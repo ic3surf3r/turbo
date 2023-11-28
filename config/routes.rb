@@ -12,12 +12,13 @@ Rails.application.routes.draw do
   resources :clubs do
     resources :club_members, only: %i[index new create]
     resources :teams, only: %i[index new create]
+    # resources :locations, only: %i[new create edit update destroy]
   end
 
   resources :teams, only: %i[show edit update destroy] do
+    resources :events
     resources :team_members, only: %i[index new create]
   end
   resources :club_members, only: %i[destroy edit update]
   resources :team_members, only: %i[destroy edit update]
-
 end
