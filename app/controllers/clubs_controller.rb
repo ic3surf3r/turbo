@@ -5,7 +5,11 @@ class ClubsController < ApplicationController
     @clubs = current_user.clubs
   end
 
-  def show; end
+  def show
+    if @club.club_members.find_by(user_id: current_user.id).nil?
+      redirect_to clubs_path
+    end
+  end
 
   def new
     @club = Club.new
