@@ -1,0 +1,7 @@
+<h1>My teams</h1>
+
+<% @teams.each do | team | %>
+  <h3><%= team.name %></h3>
+  <h6><%= team.sport %></h6>
+  <p><%= team.description %></p>
+<% end %>
