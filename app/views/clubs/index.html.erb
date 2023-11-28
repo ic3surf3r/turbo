@@ -1,0 +1,5 @@
+<% @clubs.each do |club| %>
+  <h2><%= club.name %></h2>
+  <p><%= club.description %></p>
+  <p><%= club.club_members.find_by(user_id: current_user.id).is_manager ? "Manager" : "Member" %></p>
+<% end %>

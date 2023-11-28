@@ -8,11 +8,11 @@ class ClubsController < ApplicationController
   def show; end
 
   def new
-    @club.new
+    @club = Club.new
   end
 
   def create
-    @club.new(club_params)
+    @club = Club.new(club_params)
 
     if @club.save
       @club_member = ClubMember.new
@@ -37,6 +37,6 @@ class ClubsController < ApplicationController
   end
 
   def set_club
-    @club = Club.params[:id]
+    @club = Club.find(params[:id])
   end
 end
