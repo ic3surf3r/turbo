@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_28_134546) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_28_162233) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,9 +58,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_134546) do
   create_table "team_members", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.bigint "user_id", null: false
-    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_coach", default: false
     t.index ["team_id"], name: "index_team_members_on_team_id"
     t.index ["user_id"], name: "index_team_members_on_user_id"
   end
@@ -70,6 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_134546) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "sport"
+    t.text "description"
     t.index ["club_id"], name: "index_teams_on_club_id"
   end
 
