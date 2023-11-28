@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_134546) do
     t.datetime "end_time"
     t.text "description"
     t.string "title"
-    t.bigint "location_id", null: false
+    t.bigint "location_id"
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
