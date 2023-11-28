@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_28_111446) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_28_134306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_111446) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "club_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_locations_on_club_id"
+  end
+
   create_table "team_members", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.bigint "user_id", null: false
@@ -46,6 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_111446) do
     t.bigint "club_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "sport"
     t.index ["club_id"], name: "index_teams_on_club_id"
   end
 
@@ -65,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_111446) do
 
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "users"
+  add_foreign_key "locations", "clubs"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "clubs"
