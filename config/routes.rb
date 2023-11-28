@@ -9,4 +9,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :clubs do
+    resources :club_members, only: %i[index new create]
+    resources :teams, only: %i[index new create]
+  end
+
+  resources :teams, only: %i[show edit update destroy] do
+    resources :team_members, only: %i[index new create]
+  end
+  resources :club_members, only: %i[destroy edit update]
+  resources :team_members, only: %i[destroy edit update]
+
 end

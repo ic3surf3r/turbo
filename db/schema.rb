@@ -46,6 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_133226) do
     t.bigint "club_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "sport"
     t.index ["club_id"], name: "index_teams_on_club_id"
   end
 
