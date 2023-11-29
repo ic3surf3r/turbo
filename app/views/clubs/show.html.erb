@@ -1,1 +1,27 @@
-<h1><%= @club.name %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div>
+        <h2 class='mt-2'>Club Page</h2>
+        <%= render 'shared/show_card', club: @club %>
+      </div>
+      <h2>Members</h2>
+      <div class='players-list-card br box-shadow list-group'>
+        <% @team.team_members.each do |team_member| %>
+          <%= render 'shared/players_list', team_member: team_member %>
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <div class="col-8">
+      <div>
+        <h2 class='mt-2'>Upcoming events</h2>
+        <% @team.events.each do |event| %>
+        <%= render 'shared/event_card', event: event %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
