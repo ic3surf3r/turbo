@@ -1,9 +1,9 @@
 <%= render "shared/back" %>
-<% @clubs.each do |club| %>
-  <%= link_to club_path(club) do %>
-    <h2><%= club.name %></h2>
-    <p><%= club.club_members.find_by(user_id: current_user.id).is_manager ? "Manager" : "Member" %></p>
+<div class="container">
+  <div class="d-flex justify-content-end">
+    <%= link_to 'New Club', new_club_path, class: 'btn btn-warning text-white' %>
+  </div>
+  <% @clubs.each do |club| %>
+    <%= render "shared/club_card", club: club %>
   <% end %>
-<% end %>
-
-<%= link_to 'Create club', new_club_path %>
+</div>
