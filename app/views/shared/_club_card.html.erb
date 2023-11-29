@@ -1,0 +1,10 @@
+<div class="team-card br box-shadow">
+  <h2><%= club.name %></h2>
+  <h5><%= club.address %></h5>
+  <h6>Club Locations: <%= club.locations.count %></h6>
+  <p><%= club.description %></p>
+  <% if user = ClubMember.find_by(user_id: current_user.id, club_id: club.id).is_manager %>
+    <%= link_to 'Edit club', club_path(club), class: 'btn btn-primary br'%>
+    <%= link_to 'Delete club', club_path(club), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white'%>
+  <% end %>
+</div>
