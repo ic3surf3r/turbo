@@ -1,1 +1,2 @@
-<%= render "card", event: event %>
+<%= render "card", event: @event %>
+<%= link_to 'delete event', event_path(@event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>

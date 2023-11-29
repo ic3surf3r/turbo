@@ -16,9 +16,11 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only: %i[show edit update destroy] do
-    resources :events
+    resources :events, only: %i[index new create]
     resources :team_members, only: %i[index new create]
   end
   resources :club_members, only: %i[destroy edit update]
   resources :team_members, only: %i[destroy edit update]
+  resources :events, only: %i[destroy edit update show]
+
 end
