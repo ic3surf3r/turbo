@@ -9,10 +9,11 @@
         </div>
         <div class='mx-3'>
           <h3><strong><%= event.title %></strong></h3>
-          <% if event.location_id  %>
+          <% if event.location_id %>
             <small> <strong>@<%= (Location.find(event.location_id)).name %></strong></small>
           <% end %>
           <p><%= event.description %></p>
+          <%= event.team.name %>
         </div>
     </div>
       <div class='mx-3'>
