@@ -1,8 +1,9 @@
 <div class="team-card br box-shadow">
-  <h2><%= @team.name %></h2>
-  <h3><%= @team.sport %></h3>
-  <p><%= @team.description %></p>
-  <% if user = TeamMember.find_by(user_id: current_user.id, team_id: @team.id).is_coach %>
-    <%= link_to 'Delete team', team_path(@team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white'%>
+  <h2><%= team.name %></h2>
+  <h3><%= team.sport %></h3>
+  <p><%= team.description %></p>
+  <% if user = TeamMember.find_by(user_id: current_user.id, team_id: team.id).is_coach %>
+    <%= link_to 'Edit team', team_path(team), class: 'btn btn-primary br'%>
+    <%= link_to 'Delete team', team_path(team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white'%>
   <% end %>
 </div>

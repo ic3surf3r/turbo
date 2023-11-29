@@ -1,2 +1,31 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Home</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div>
+        <h2 class='mt-2'>Team's page</h2>
+        <% current_user.teams.each do |team| %>
+          <%= render 'shared/team_card', team: team %>
+        <% end %>
+      </div>
+      <h2>Members</h2>
+      <div class='players-list-card br box-shadow list-group'>
+        <% @team.team_members.each do |team_member| %>
+          <%= render 'shared/players_list', team_member: team_member %>
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <div class="col-8">
+      <div>
+        <h2 class='mt-2'>Upcoming events</h2>
+        <% @team.events.each do |event| %>
+        <%= render 'shared/event_card', event: event %>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
