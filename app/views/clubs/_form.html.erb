@@ -1,6 +1,9 @@
-<%= simple_form_for(club) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.input :address %>
-    <%= f.submit "Submit" %>
-  <% end %>
+<div class="mx-auto" style="width: 30rem">
+  <h1 class="text-center">New Club</h1>
+  <%= simple_form_for(club) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :address %>
+      <%= f.submit "Submit" %>
+    <% end %>
+</div>
