@@ -1,5 +1,9 @@
+<%= render "shared/back" %>
 <% @clubs.each do |club| %>
-  <h2><%= club.name %></h2>
-  <p><%= club.description %></p>
-  <p><%= club.club_members.find_by(user_id: current_user.id).is_manager ? "Manager" : "Member" %></p>
+  <%= link_to club_path(club) do %>
+    <h2><%= club.name %></h2>
+    <p><%= club.club_members.find_by(user_id: current_user.id).is_manager ? "Manager" : "Member" %></p>
+  <% end %>
 <% end %>
+
+<%= link_to 'Create club', new_club_path %>

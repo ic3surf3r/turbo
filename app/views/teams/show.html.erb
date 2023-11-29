@@ -1,3 +1,8 @@
-<h1><%= @team.name %> team</h1>
+<%= render "shared/back" %>
+<h1><%= @team.name %></h1>
+<h2><%= @team.sport %></h2>
+<h3><%= @team.description %></h3>
+
 
 <%= link_to 'delete team', team_path(@team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%= link_to 'Back to my teams', club_teams_path(@team) %>
