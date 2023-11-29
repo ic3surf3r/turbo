@@ -6,6 +6,7 @@
       <div>
         <h2 class='mt-2'>Club Page</h2>
         <%= render 'shared/club_card', club: @club %>
+        <%= render 'shared/invite_link', club: @club %>
       </div>
       <h2>Teams</h2>
         <% @club.teams.each do |team| %>
