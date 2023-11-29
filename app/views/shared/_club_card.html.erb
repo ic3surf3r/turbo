@@ -3,8 +3,8 @@
   <h3><%= club.address %></h3>
   <h3><%= club.locations.count %></h3>
   <p><%= club.description %></p>
-  <% if user = TeamMember.find_by(user_id: current_user.id, club_id: club.id).is_manager %>
-    <%= link_to 'Edit club', club_path(team), class: 'btn btn-primary br'%>
-    <%= link_to 'Delete club', club_path(team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white'%>
+  <% if user = ClubMember.find_by(user: current_user, club: club).is_manager %>
+    <%= link_to 'Edit club', club_path(club), class: 'btn btn-primary br'%>
+    <%= link_to 'Delete club', club_path(club), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white'%>
   <% end %>
 </div>
