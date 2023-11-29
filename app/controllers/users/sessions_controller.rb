@@ -1,27 +1,18 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  def new
+    @club = Club.find(params[:club_id]) if Club.exists?(params[:club_id])
+    super
+  end
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
-
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
-
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
-
-  # protected
-
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
-  # end
+  def create
+    if params[:user][:club_id]
+      @club = Club.find(params[:user][:club_id])
+      ClubMember.create(user: current_user, club: @club) if params[:user][:invite_token] == @club.invite_token
+      super
+    else
+      super
+    end
+  end
 end

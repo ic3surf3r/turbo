@@ -4,7 +4,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.hidden_field :invite_token, value: @club.invite_token if @club %>
+    <%= f.hidden_field :invite_token, value: params[:invite_token] if @club %>
     <%= f.hidden_field :club_id, value: @club.id if @club %>
     <%= f.input :email,
                 required: true,
