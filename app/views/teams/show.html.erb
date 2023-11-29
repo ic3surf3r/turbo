@@ -19,9 +19,9 @@
       <div>
         <h2 class='mt-2'>Upcoming events</h2>
         <% @team.events.each do |event| %>
-        <%= render 'shared/event_card', event: event %>
-      </div>
+          <%= render 'shared/event_card', event: event %>
         <% end %>
+      </div>
     </div>
   </div>
 </div>
