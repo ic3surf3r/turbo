@@ -10,4 +10,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_in, keys: [:email, :password]
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
+
+
+  def after_sign_up_path_for(resource)
+    if params[:user][:club_id]
+      @club = Club.find(params[:user][:club_id])
+      redirect_to club_path(@club)
+    else
+      after_sign_in_path_for(resource)
+    end
+  end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations"}
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :clubs do
-    resources :club_members, only: %i[index new create]
+    get 'invite/:invite_token', to: "club_members#new"
+    resources :club_members, only: %i[index]
     resources :teams, only: %i[index new create]
   end
 
