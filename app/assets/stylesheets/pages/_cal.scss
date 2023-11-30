@@ -14,9 +14,27 @@
 
 .cal-item h4 {
   text-align: center;
+  margin: 5px 0;
 }
 
 .event-cell {
   text-align: center;
-  margin: auto 0;
+  margin: 5px 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.empty {
+  background: #959595;
+}
+
+.popcard {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 0;
+  border-radius: 10px;
+  background: #dbdbdb;
+  padding: 5px;
+  z-index: 10;
 }

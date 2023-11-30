@@ -1,0 +1,45 @@
+    <div class="cal-item">
+      <h4><%= start_time %> to <%= end_time %></h4>
+    </div>
+    <div class="cal-item" data-controller="popover" data-action="<%= @cal[0][time_slot].count == 0 ? "" : "mouseenter->popover#show mouseleave->popover#hide" %>">
+      <p class="event-cell <%= "empty" if @cal[0][time_slot].count == 0 %>"><%= @cal[0][time_slot].count %></p>
+      <% unless @cal[0][time_slot].count == 0 %>
+        <%= render 'popcard', events: @cal[0][time_slot] %>
+      <% end %>
+    </div>
+    <div class="cal-item" data-controller="popover" data-action="<%= @cal[1][time_slot].count == 0 ? "" : "mouseenter->popover#show mouseleave->popover#hide" %>">
+      <p class="event-cell <%= "empty" if @cal[1][time_slot].count == 0 %>"><%= @cal[1][time_slot].count %></p>
+      <% unless @cal[1][time_slot].count == 0 %>
+        <%= render 'popcard', events: @cal[1][time_slot] %>
+      <% end %>
+    </div>
+    <div class="cal-item" data-controller="popover" data-action="<%= @cal[2][time_slot].count == 0 ? "" : "mouseenter->popover#show mouseleave->popover#hide" %>">
+      <p class="event-cell <%= "empty" if @cal[2][time_slot].count == 0 %>"><%= @cal[2][time_slot].count %></p>
+      <% unless @cal[2][time_slot].count == 0 %>
+        <%= render 'popcard', events: @cal[2][time_slot] %>
+      <% end %>
+    </div>
+    <div class="cal-item" data-controller="popover" data-action="<%= @cal[3][time_slot].count == 0 ? "" : "mouseenter->popover#show mouseleave->popover#hide" %>">
+      <p class="event-cell <%= "empty" if @cal[3][time_slot].count == 0 %>"><%= @cal[3][time_slot].count %></p>
+      <% unless @cal[3][time_slot].count == 0 %>
+        <%= render 'popcard', events: @cal[3][time_slot] %>
+      <% end %>
+    </div>
+    <div class="cal-item" data-controller="popover" data-action="<%= @cal[4][time_slot].count == 0 ? "" : "mouseenter->popover#show mouseleave->popover#hide" %>">
+      <p class="event-cell <%= "empty" if @cal[4][time_slot].count == 0 %>"><%= @cal[4][time_slot].count %></p>
+      <% unless @cal[4][time_slot].count == 0 %>
+        <%= render 'popcard', events: @cal[4][time_slot] %>
+      <% end %>
+    </div>
+    <div class="cal-item" data-controller="popover" data-action="<%= @cal[5][time_slot].count == 0 ? "" : "mouseenter->popover#show mouseleave->popover#hide" %>">
+      <p class="event-cell <%= "empty" if @cal[5][time_slot].count == 0 %>"><%= @cal[5][time_slot].count %></p>
+      <% unless @cal[5][time_slot].count == 0 %>
+        <%= render 'popcard', events: @cal[5][time_slot] %>
+      <% end %>
+    </div>
+    <div class="cal-item" data-controller="popover" data-action="<%= @cal[6][time_slot].count == 0 ? "" : "mouseenter->popover#show mouseleave->popover#hide" %>">
+      <p class="event-cell <%= "empty" if @cal[6][time_slot].count == 0 %>"><%= @cal[6][time_slot].count %></p>
+      <% unless @cal[6][time_slot].count == 0 %>
+        <%= render 'popcard', events: @cal[6][time_slot] %>
+      <% end %>
+    </div>
