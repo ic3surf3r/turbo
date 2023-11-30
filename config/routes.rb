@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :clubs do
+    get '/cal', to: "clubs#cal"
+    get '/events', to: "clubs#event"
     get 'invite/:invite_token', to: "club_members#new"
     resources :club_members, only: %i[index]
     resources :teams, only: %i[index new create]
@@ -17,10 +19,12 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only: %i[show edit update destroy] do
-    resources :team_members, only: %i[create]
-    resources :events, only: %i[index new create]
+    resources :events, only: %i[index new]
     resources :team_members, only: %i[index new create]
   end
+
+  resources :events, only: :create
+
   resources :club_members, only: %i[destroy edit update]
   resources :team_members, only: %i[destroy edit update]
   resources :events, only: %i[destroy edit update show]

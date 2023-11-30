@@ -1,0 +1,7 @@
+<template data-popover-target="content">
+  <div data-popover-target="card" class="popcard">
+    <% events.each do |event| %>
+      <%= render "shared/event_card_team_name_small", event: event %>
+    <% end %>
+  </div>
+</template>
