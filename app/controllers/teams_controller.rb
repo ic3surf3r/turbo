@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @team_member = TeamMember.new
   end
 
   def new
@@ -50,6 +51,9 @@ class TeamsController < ApplicationController
     redirect_to club_teams_path(@club), status: :see_other
   end
 
+  def new_member
+    puts 'hello'
+  end
 
   private
 

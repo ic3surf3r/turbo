@@ -6,8 +6,15 @@
         <h2 class='mt-2'>Team's page</h2>
         <%= render 'shared/team_card', team: @team %>
       </div>
-
-      <h2>Members</h2>
+      <div>
+        <% if user = TeamMember.find_by(user: current_user, team: @team).is_coach %>
+          <%= simple_form_for [@team, @team_member]  do |f| %>
+            <%= f.association :user, collection: User.where.not(id: @team.team_members.map{|tm| tm.user_id}), label_method: :fullname, value_method: :id %>
+            <%= f.submit %>
+          <% end %>
+        <% end %>
+      </div>
+      <h2 class='my-3'>Members</h2>
       <div class='players-list-card br box-shadow list-group'>
         <% @team.team_members.each do |team_member| %>
           <%= render 'shared/players_list', team_member: team_member %>
