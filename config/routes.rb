@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :clubs do
+    get '/cal', to: "clubs#cal"
     get 'invite/:invite_token', to: "club_members#new"
     resources :club_members, only: %i[index]
     resources :teams, only: %i[index new create]

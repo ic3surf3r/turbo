@@ -34,6 +34,12 @@ class ClubsController < ApplicationController
     end
   end
 
+  def cal
+    @club = Club.find(params[:club_id])
+    @monday = Date.today.beginning_of_week
+    @cal = @club.make_cal(@monday)
+  end
+
   private
 
   def club_params

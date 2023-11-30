@@ -1,0 +1,22 @@
+.cal {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: auto;
+  justify-content: center;
+  align-content: center;
+}
+
+.cal-item {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.cal-item h4 {
+  text-align: center;
+}
+
+.event-cell {
+  text-align: center;
+  margin: auto 0;
+}
