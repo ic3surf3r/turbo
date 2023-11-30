@@ -1,5 +1,8 @@
 <div class="container">
   <br>
+  <div class="d-flex justify-content-end">
+    <%= link_to "New Event", club_events_path(@club), class: "btn btn-warning text-white"%>
+  </div>
   <div class="d-flex justify-content-center align-items-center">
     <%= link_to club_cal_path(start_date: @monday.prev_day(7)), class: "text-black text-decoration-none me-3" do %>
       <h3><<</h3>

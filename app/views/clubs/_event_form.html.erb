@@ -1,0 +1,8 @@
+<%= simple_form_for([club, event], method: :post, url: events_path) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.association :team, collection: club.teams %>
+  <%= f.input :start_time, as: :datetime %>
+  <%= f.input :end_time, as: :datetime %>
+  <%= f.submit "Submit Event", class:"btn btn-secondary"%>
+<% end %>

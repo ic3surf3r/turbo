@@ -37,12 +37,21 @@ class ClubsController < ApplicationController
   def cal
     @club = Club.find(params[:club_id])
 
+    unless current_user.club_members.find_by(club: @club).is_manager
+      redirect_to club_path(@club)
+    end
+
     if params[:start_date]
       @monday = Date.parse(params[:start_date]).beginning_of_week
     else
       @monday = Date.today.beginning_of_week
     end
     @cal = @club.make_cal(@monday)
+  end
+
+  def event
+    @club = Club.find(params[:club_id])
+    @event = Event.new
   end
 
   private
