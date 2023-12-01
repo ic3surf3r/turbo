@@ -1,6 +1,23 @@
-<%= simple_form_for [@club, @team] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :sport %>
-  <%= f.input :description %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="mx-auto" style="width: 30rem">
+    <div class="text-center mt-5">
+      <h2>Edit this team</h2>
+    </div>
+
+      <%= simple_form_for [@club, @team] do |f| %>
+        <%= f.input :name,
+                    label: false,
+                    input_html: { placeholder: "Name", class: "border-dark my-4 bg-info"}  %>
+        <%= f.input :sport,
+                    label: false,
+                    input_html: { placeholder: "Sport", class: "border-dark my-4 bg-info"}  %>
+        <%= f.input :description,
+                    label: false,
+                    input_html: { placeholder: "Description", class: "border-dark my-4 bg-info"}  %>
+         <div class="my-3form-actions text-center rounded d-grid gap-2">
+          <%= f.submit "Submit Event", class:"btn btn-secondary bg-dark"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

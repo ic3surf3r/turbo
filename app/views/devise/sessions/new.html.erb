@@ -11,11 +11,11 @@
                       required: false,
                       autofocus: true,
                       label: false,
-                      input_html: { placeholder: "Email", class: "pl-5 border-dark my-4" } %>
+                      input_html: { placeholder: "Email", class: "pl-5 border-dark my-4 bg-info" } %>
           <%= f.input :password,
                       required: false,
                       label: false,
-                      input_html: { placeholder: "Current password", class: "border-dark my-4" } %>
+                      input_html: { placeholder: "Current password", class: "border-dark my-4 bg-info" } %>
           <%= f.input :remember_me, input_html: { class: "border-dark " },as: :boolean if devise_mapping.rememberable? %>
         </div>
 
