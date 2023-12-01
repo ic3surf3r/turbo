@@ -1,4 +1,3 @@
-<%= render "shared/back" %>
 <div class="container">
   <div class="row">
     <div class="col-4">
@@ -7,7 +6,12 @@
         <%= render 'shared/club_card', club: @club %>
         <%= render 'shared/invite_link', club: @club %>
       </div>
+      <div class="d-flex justify-content-between align-items-center">
       <h2>Teams</h2>
+      <%= link_to 'Create team', new_club_team_path(@club), class:'btn btn-primary br' %>
+        <% @club.teams.each do |team| %>
+          <%= render 'shared/team_card', team: team %>
+        <% end %>
         <% if @club.teams.length == 0 %>
           <h4>This club does not have any teams yet</h4>
         <% else %>
