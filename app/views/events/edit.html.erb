@@ -1,8 +1,26 @@
-<h1>Edit your event</h1>
-<%= simple_form_for @event do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :start_time, as: :time %>
-  <%= f.input :end_time, as: :time %>
-  <%= f.submit "Submit Event",class:"btn btn-secondary"%>
-<% end %>
+<div class="container">
+  <div class="mx-auto" style="width: 30rem">
+    <div class="text-center mt-5">
+      <h2>Edit this event</h2>
+    </div>
+
+      <%= simple_form_for @event do |f| %>
+        <%= f.input :title,
+                    label: false,
+                    input_html: { placeholder: "Title", class: "border-dark my-4 bg-info"}  %>
+        <%= f.input :description,
+                    label: false,
+                    input_html: { placeholder: "Description", class: "border-dark my-4 bg-info"}  %>
+        <%= f.input :start_time,
+                    label: false,
+                    input_html: { placeholder: "Start time", class: "border-dark my-4 bg-info"}, as: :time %>
+        <%= f.input :end_time,
+                    label: false,
+                    input_html: { placeholder: "End time", class: "border-dark my-4 bg-info"}, as: :time %>
+        <div class="my-3form-actions text-center rounded d-grid gap-2">
+          <%= f.submit "Submit new event", class:"btn btn-secondary bg-dark"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
