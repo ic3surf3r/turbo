@@ -22,14 +22,14 @@ kevin = User.create!(email: "kevin@email.com", first_name: "Kevin", last_name: "
 
 puts "Creating White Starr"
 white_star = Club.create!(name: "Royal White Star A.C.", description: "Hockey team in first division", address: "Chemin du Struykbeken 2, 1200 Bruxelles")
-ClubMember.create!(club_id: white_star.id, user_id: bob.id, is_manager: true)
-ClubMember.create!(club_id: white_star.id, user_id: stacy.id)
+ClubMember.create!(club_id: white_star.id, user_id: bob.id)
+ClubMember.create!(club_id: white_star.id, user_id: stacy.id, is_manager: true)
 ClubMember.create!(club_id: white_star.id, user_id: kevin.id)
 
 first_team = Team.create!(club_id: white_star.id, name: "First team", sport: "Hockey")
-TeamMember.create!(team_id: first_team.id, user_id: stacy.id, is_coach: true)
+TeamMember.create!(team_id: first_team.id, user_id: stacy.id)
 TeamMember.create!(team_id: first_team.id, user_id: bob.id)
-TeamMember.create!(team_id: first_team.id, user_id: kevin.id)
+TeamMember.create!(team_id: first_team.id, user_id: kevin.id, is_coach: true)
 
 senior_team = Team.create!(club_id: white_star.id, name: "Senior team", sport: "Hockey")
 TeamMember.create!(team_id: senior_team.id, user_id: kevin.id, is_coach: true)
@@ -56,8 +56,8 @@ jogo_um = Event.create!(start_time: DateTime.new(2025,2,3,4,5,6), end_time: Date
 
 puts "Creating Louvain-la-Neuve"
 louvain_la_neuve = Club.create!(name: "Louvain-la-Neuve Club", description: "Club de sport ", address: "Bd Baudouin 1er, 1348 Ottignies-Louvain-la-Neuve")
-ClubMember.create!(club_id: louvain_la_neuve.id, user_id: stacy.id, is_manager: true)
-ClubMember.create!(club_id: louvain_la_neuve.id, user_id: bob.id)
+ClubMember.create!(club_id: louvain_la_neuve.id, user_id: stacy.id)
+ClubMember.create!(club_id: louvain_la_neuve.id, user_id: bob.id, is_manager: true)
 ClubMember.create!(club_id: louvain_la_neuve.id, user_id: kevin.id)
 
 first_hockey_team = Team.create!(club_id: louvain_la_neuve.id, name: "First Hockey Team", sport: "hockey")
@@ -83,8 +83,6 @@ TeamMember.create!(team_id: first_football_team.id, user_id: kevin.id, is_coach:
   end
 end
 puts "created 30 Louvain-la-neuve members"
-
-
 
 nilton_santos = Location.create!(name: "Louvain-la-Neuve hockey stadium", description: "Main Louvain-la-Neuve hockey staidum where all the magic happens", club_id: louvain_la_neuve.id)
 jogo_dois = Event.create!(start_time: DateTime.new(2025,2,3,4,5,6), end_time: DateTime.new(2025,2,3,6,5,6), description: "Game between Louvain-la-Neuve and White Star @Louvain-la-Neuve hockey stadium", title: "Louvain-la-Neuve vs White Star", team_id: first_hockey_team.id )
