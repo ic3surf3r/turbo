@@ -1,9 +1,10 @@
-<%= render "shared/back" %>
 <div class="container">
   <h1>My teams</h1>
   <div class="d-flex">
     <% @teams.each do | team | %>
-      <%= render 'shared/team_card', team: team %>
+      <div class="m-3">
+        <%= render 'shared/team_card', team: team %>
+      </div>
     <% end %>
   </div>
 </div>
