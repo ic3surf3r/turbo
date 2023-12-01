@@ -47,7 +47,7 @@ class User < ApplicationRecord
 
   def upcoming_events
     self.teams.flat_map do |team|
-      team.events.where("end_time < ?", Time.now)
+      team.events.where("end_time > ?", Time.now)
     end
   end
 end

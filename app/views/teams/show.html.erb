@@ -35,7 +35,7 @@
             <%= link_to 'New event', new_team_event_path(@team), class: 'btn btn-primary br' %>
           <% end %>
         </div>
-        <% @team.events.where("end_time < ?", Time.now).each do |event| %>
+        <% @team.events.where("end_time > ?", Time.now).each do |event| %>
           <%= render 'shared/event_card', event: event %>
         <% end %>
       </div>
