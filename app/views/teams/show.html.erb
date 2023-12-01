@@ -8,8 +8,12 @@
       <div>
         <% if current_user.coach_or_manager?(@team) %>
           <%= simple_form_for [@team, @team_member]  do |f| %>
-            <%= f.association :user, collection: User.where.not(id: @team.team_members.map{|tm| tm.user_id}), label_method: :fullname, value_method: :id %>
-            <%= f.submit %>
+            <div class="input-group">
+              <%= f.association :user, label: false, prompt: "Add team member" , collection: User.where.not(id: @team.team_members.map{|tm| tm.user_id}), label_method: :fullname, value_method: :id, input_html: {class: "bg-info"} %>
+              <div>
+                <%= f.submit "Submit", class: "btn btn-dark"%>
+              </div>
+            </div>
           <% end %>
         <% end %>
       </div>
