@@ -31,11 +31,13 @@
 }
 
 .popcard {
+  max-height: 200px;
+  overflow: scroll;
   position: absolute;
   bottom: 2.5rem;
   left: 0;
   border-radius: 10px;
   background: #dbdbdb;
-  padding: 5px;
+  padding: 0 5px;
   z-index: 10;
 }
