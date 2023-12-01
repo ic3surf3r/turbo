@@ -1,11 +1,9 @@
-<h1>My teams</h1>
-
-<% @teams.each do | team | %>
-  <%= link_to team_path(team) do %>
-    <h3><%= team.name %></h3>
-    <h6><%= team.sport %></h6>
-    <p><%= team.description %></p>
-  <% end %>
-<% end %>
-
-
+<%= render "shared/back" %>
+<div class="container">
+  <h1>My teams</h1>
+  <div class="d-flex">
+    <% @teams.each do | team | %>
+      <%= render 'shared/team_card', team: team %>
+    <% end %>
+  </div>
+</div>

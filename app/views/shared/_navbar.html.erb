@@ -16,8 +16,9 @@
             <h3 class="text-light m-0"><%= current_user.fullname %></h3>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "My clubs", clubs_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "My clubs", clubs_path, class: "dropdown-item border-bottom" %>
+              <%= link_to "My teams", club_teams_path(current_user.teams), class: "dropdown-item border-bottom" %>
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item border-bottom" %>
             </div>
           </li>
         <% else %>
