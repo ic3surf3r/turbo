@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_team, only: [:new, :create]
+  before_action :set_team, only: [:new]
   def index
     @events = current_user.teams.map {|team| team.events}.flatten
   end
@@ -14,7 +14,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.team = @team
     if @event.save!
       redirect_to team_events_path(@event)
     else
@@ -52,6 +51,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_time, :end_time)
+    params.require(:event).permit(:title, :description, :start_time, :end_time, :team_id)
   end
 end
