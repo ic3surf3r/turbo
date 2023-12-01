@@ -1,35 +1,48 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="mx-auto" style="width: 30rem">
+    <div class="text-center mt-5">
+      <h2>Sign Up</h2>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.hidden_field :invite_token, value: params[:invite_token] if @club %>
-    <%= f.hidden_field :club_id, value: @club.id if @club %>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "first name"} %>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "last name"} %>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <div class="form-inputs">
+        <%= f.hidden_field :invite_token, value: params[:invite_token] if @club %>
+        <%= f.hidden_field :club_id, value: @club.id if @club %>
+        <%= f.input :first_name,
+                    required: true,
+                    autofocus: true,
+                    label: false,
+                    input_html: { placeholder: "First name", class: "border-dark my-4"} %>
+        <%= f.input :last_name,
+                    required: true,
+                    autofocus: true,
+                    label: false,
+                    input_html: { placeholder: "Last name", class: "border-dark my-4"} %>
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    label: false,
+                    input_html: { placeholder: "Email", class: "border-dark my-4" }%>
+        <%= f.input :password,
+                    required: true,
+                    label: false,
+                    input_html: { placeholder: "New password - 6 characters min ", class: "border-dark" } %>
+        <%= f.input :password_confirmation,
+                    required: true,
+                    label: false,
+                    input_html: { placeholder: "Confirm password", class: "border-dark my-4" } %>
+      </div>
+
+      <div class="my-3form-actions text-center rounded d-grid gap-2">
+        <%= f.button :submit, "Sign up", class: "btn btn-dark" %>
+      </div>
+    <% end %>
+
+
+    <div class="my-2 text-center pt-3">
+      <p>Already have an account?<%= render "devise/shared/links"%></p>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
