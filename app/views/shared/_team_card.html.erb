@@ -1,12 +1,18 @@
 <%= link_to team_path(team), class:'inherit-all' do %>
-  <div class="team-card br box-shadow">
+  <div class="team-card br box-shadow mx-2">
     <h2><%= team.name %></h2>
     <h3><%= team.sport %></h3>
     <p><%= team.description %></p>
     <p><%= team.team_members.count %> members</p>
     <% if TeamMember.find_by(user: current_user, team: team).is_coach %>
-      <%= link_to 'Edit team', edit_team_path(team), class: 'btn btn-primary br'%>
-      <%= link_to 'Delete team', team_path(team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white'%>
+    <div class='buttons'>
+      <%= link_to edit_team_path(team), class: 'btn btn-primary br' do %>
+        <i class="fa-regular fa-pen-to-square"></i>
+      <% end %>
+      <%= link_to team_path(team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white' do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
     <% end %>
   </div>
 <% end %>
