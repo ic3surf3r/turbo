@@ -1,19 +1,27 @@
 <div class="container">
   <br>
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-between">
+    <div class="">
+      <form action="/clubs/<%= @club.id %>/cal" class="input-group">
+        <input class="form-control flatpickr-input bg-info" data-controller="datepicker2" name="start_date" id="start_date" placeholder="Pick a date" value=<%= params[:start_date] || Date.today %> >
+        <button type="submit" class="btn btn-dark">Go to Date</button>
+      </form>
+    </div>
     <%= link_to "New Event", club_events_path(@club), class: "btn btn-warning text-white"%>
   </div>
+  <br>
   <div class="d-flex justify-content-center align-items-center">
     <%= link_to club_cal_path(start_date: @monday.prev_day(7)), class: "text-black text-decoration-none me-3" do %>
       <h3><<</h3>
     <% end %>
     <h3>
-      <%= @monday.strftime("%B %d %Y") %> - <%= @monday.next_day(6).strftime("%B %d %Y") %>
+      <%= @monday.strftime("%B %d, %Y") %> - <%= @monday.next_day(6).strftime("%B %d, %Y") %>
     </h3>
     <%= link_to club_cal_path(start_date: @monday.next_day(7)), class: "text-black text-decoration-none ms-3" do %>
       <h3>>></h3>
     <% end %>
   </div>
+  <br>
   <div class="cal">
     <div class="cal-item">
       <h4>Start Time</h4>
