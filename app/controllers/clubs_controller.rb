@@ -10,7 +10,7 @@ class ClubsController < ApplicationController
       redirect_to clubs_path
     end
 
-    @upcoming_events = @club.teams.map { |team| team.events.where("end_time < ?", Time.now) }.flatten
+    @upcoming_events = @club.teams.map { |team| team.events.where("end_time > ?", Time.now) }.flatten
   end
 
   def new
