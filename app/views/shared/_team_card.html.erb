@@ -4,7 +4,7 @@
     <h3><%= team.sport %></h3>
     <p><%= team.description %></p>
     <p><%= team.team_members.count %> members</p>
-    <% if TeamMember.find_by(user: current_user, team: team).is_coach %>
+    <% if current_user.coach_or_manager?(team) %>
       <%= link_to 'Edit team', edit_team_path(team), class: 'btn btn-primary br'%>
       <%= link_to 'Delete team', team_path(team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white'%>
     <% end %>
