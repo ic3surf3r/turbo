@@ -7,7 +7,7 @@
         <%= render 'shared/team_card', team: @team %>
       </div>
       <div>
-        <% if user = TeamMember.find_by(user: current_user, team: @team).is_coach %>
+        <% if current_user.coach_or_manager?(@team) %>
           <%= simple_form_for [@team, @team_member]  do |f| %>
             <%= f.association :user, collection: User.where.not(id: @team.team_members.map{|tm| tm.user_id}), label_method: :fullname, value_method: :id %>
             <%= f.submit %>
@@ -28,7 +28,7 @@
       <div>
         <div class='d-flex justify-content-between align-items-center'>
           <h2 class='mt-2'>Upcoming events</h2>
-          <% if user = TeamMember.find_by(user: current_user, team: @team).is_coach %>
+          <% if current_user.coach_or_manager?(@team) %>
             <%= link_to 'New event', new_team_event_path(@team), class: 'btn btn-primary br' %>
           <% end %>
         </div>

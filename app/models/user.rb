@@ -29,4 +29,13 @@ class User < ApplicationRecord
     end
     return false
   end
+
+  def manager?(club)
+    club_membership = self.club_members.find_by(club: club)
+    if club_membership
+      return club_membership.is_manager
+    else
+      return false
+    end
+  end
 end

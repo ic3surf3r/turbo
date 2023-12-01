@@ -51,6 +51,9 @@ class ClubsController < ApplicationController
 
   def event
     @club = Club.find(params[:club_id])
+
+    redirect_to club_path(@club) unless current_user.manager?(@club)
+
     @event = Event.new
   end
 
