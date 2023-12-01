@@ -1,9 +1,14 @@
-<%= render "shared/back" %>
 <div class="container">
   <h1>My teams</h1>
   <div class="d-flex">
-    <% @teams.each do | team | %>
-      <%= render 'shared/team_card', team: team %>
+    <% if current_user.teams.length == 0 %>
+      <h4>You have not joined any teams yet</h4>
+    <% else %>
+      <% @teams.each do | team | %>
+        <div class="m-3">
+          <%= render 'shared/team_card', team: team %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
