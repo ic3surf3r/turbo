@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     hours = @event.duration[0].to_i
     minutes = @event.duration[2..3].to_i
-    @event.end_time = @event.start_time + minutes * 60 + hours * 60 * 60
+    @event.end_time = @event.start_time + (minutes * 60) + (hours * 60 * 60)
 
     if @event.save!
       redirect_to team_events_path(@event)
