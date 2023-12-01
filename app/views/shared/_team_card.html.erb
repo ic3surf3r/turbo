@@ -4,7 +4,7 @@
     <h3><%= team.sport %></h3>
     <p><%= team.description %></p>
     <p><%= team.team_members.count %> members</p>
-    <% if TeamMember.find_by(user: current_user, team: team).is_coach %>
+  <% if current_user.coach_or_manager?(team) %>
     <div class='buttons'>
       <%= link_to edit_team_path(team), class: 'btn btn-primary br' do %>
         <i class="fa-regular fa-pen-to-square"></i>
@@ -13,6 +13,6 @@
         <i class="fa-solid fa-trash"></i>
       <% end %>
     </div>
-    <% end %>
+   <% end %>
   </div>
 <% end %>
