@@ -14,6 +14,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    hours = @event.duration[0].to_i
+    minutes = @event.duration[2..3].to_i
+    @event.end_time = @event.start_time + (minutes * 60) + (hours * 60 * 60)
+
     if @event.save!
       redirect_to team_events_path(@event)
     else
@@ -51,6 +55,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_time, :end_time, :team_id)
+    params.require(:event).permit(:title, :description, :start_time, :team_id, :duration)
   end
 end
