@@ -1,3 +1,4 @@
+require 'faker'
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -19,30 +20,71 @@ bob = User.create!(email: "bob@email.com", first_name: "Bob", last_name: "Smith"
 stacy = User.create!(email: "stacy@email.com", first_name: "Stacy", last_name: "Valentine", password: "123123")
 kevin = User.create!(email: "kevin@email.com", first_name: "Kevin", last_name: "Elevin", password: "123123")
 
-puts "Creating Vasco"
-vasco = Club.create!(name: "Vasco", description: "Always second place", address: "Avenida Roberto Dinamite, 10. Bairro Vasco da Gama Rio de Janeiro - RJ - Brasil CEP 20921-060")
-ClubMember.create!(club_id: vasco.id, user_id: bob.id, is_manager: true)
-ClubMember.create!(club_id: vasco.id, user_id: stacy.id)
-ClubMember.create!(club_id: vasco.id, user_id: kevin.id)
+puts "Creating White Starr"
+white_star = Club.create!(name: "Royal White Star A.C.", description: "Hockey team in first division", address: "Chemin du Struykbeken 2, 1200 Bruxelles")
+ClubMember.create!(club_id: white_star.id, user_id: bob.id, is_manager: true)
+ClubMember.create!(club_id: white_star.id, user_id: stacy.id)
+ClubMember.create!(club_id: white_star.id, user_id: kevin.id)
 
-vasco_senior = Team.create!(club_id: vasco.id, name: "Vasco Senior", sport: "football")
-TeamMember.create!(team_id: vasco_senior.id, user_id: stacy.id, is_coach: true)
-TeamMember.create!(team_id: vasco_senior.id, user_id: bob.id)
-TeamMember.create!(team_id: vasco_senior.id, user_id: kevin.id)
+first_team = Team.create!(club_id: white_star.id, name: "First team", sport: "Hockey")
+TeamMember.create!(team_id: first_team.id, user_id: stacy.id, is_coach: true)
+TeamMember.create!(team_id: first_team.id, user_id: bob.id)
+TeamMember.create!(team_id: first_team.id, user_id: kevin.id)
 
-sao_januario = Location.create!(name: "Estadio São Januario", description: "Estádio Vasco da Gama, also known as São Januário, owing to its location on a street of the same name, is the home ground of Club de Regatas Vasco da Gama. Its facade is listed by the National Historical and Artistic Heritage.", club_id: vasco.id)
-jogo_um = Event.create!(start_time: DateTime.new(2025,2,3,4,5,6), end_time: DateTime.new(2025,2,3,6,5,6), description: "Game between Vasco and Botafogo @São Januario", title: "Vasco vs Botafogo", location_id: sao_januario.id, team_id: vasco_senior.id )
+senior_team = Team.create!(club_id: white_star.id, name: "Senior team", sport: "Hockey")
+TeamMember.create!(team_id: senior_team.id, user_id: kevin.id, is_coach: true)
 
-puts "Creating Botafogo"
-botafogo = Club.create!(name: "Botafogo", description: "Always blottles it", address: "AV. VENCESLAU BRÁS, 72 - RIO DE JANEIRO; CEP 22290-140")
-ClubMember.create!(club_id: botafogo.id, user_id: stacy.id, is_manager: true)
-ClubMember.create!(club_id: botafogo.id, user_id: bob.id)
-ClubMember.create!(club_id: botafogo.id, user_id: kevin.id)
 
-botafogo_senior = Team.create!(club_id: botafogo.id, name: "Botafogo Senior", sport: "football")
-TeamMember.create!(team_id: botafogo_senior.id, user_id: stacy.id)
-TeamMember.create!(team_id: botafogo_senior.id, user_id: bob.id, is_coach: true)
-TeamMember.create!(team_id: botafogo_senior.id, user_id: kevin.id)
+30.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  user = User.create!(email: "#{first_name}.#{last_name}@email.com", first_name: first_name, last_name: last_name, password: "123123")
+  ClubMember.create!(club_id: white_star.id, user_id: user.id)
+  random = rand(1..2)
+  if random == 1
+    TeamMember.create!(team_id: first_team.id, user_id: user.id)
+    puts "created first team team member"
+  elsif random == 2
+    TeamMember.create!(team_id: senior_team.id, user_id: user.id)
+    puts "created senior team team member"
+  end
+end
+puts "created 30 extra White star members"
 
-nilton_santos = Location.create!(name: "Nilton Santos", description: "Estádio Olímpico Nilton Santos is a multi-purpose stadium located in the neighbourhood of Engenho de Dentro in Rio de Janeiro, Brazil. It is used mostly for football matches and athletics and is the home stadium of the football club Botafogo. The stadium was built by a consortium under the leadership of Odebrecht S.A., from 2003 through to 2007, opening in time for the 2007 Pan American Games.[4][5] It hosted the athletics competitions at the 2016 Summer Olympics and the 2016 Summer Paralympics.[6] It was one of the five venues for the 2021 Copa América.", club_id: botafogo.id)
-jogo_dois = Event.create!(start_time: DateTime.new(2025,2,3,4,5,6), end_time: DateTime.new(2025,2,3,6,5,6), description: "Game between botafogo and Botafogo @São Januario", title: "botafogo vs Botafogo", team_id: botafogo_senior.id )
+main_field = Location.create!(name: "Main field", description: "Main field where the most important games are played every week", club_id: white_star.id)
+jogo_um = Event.create!(start_time: DateTime.new(2025,2,3,4,5,6), end_time: DateTime.new(2025,2,3,6,5,6), description: "Game between White Star and Louvain-la-neuve @Main field", title: "White Star vs Louvain-la-Neuve", location_id: main_field.id, team_id: first_team.id )
+
+puts "Creating Louvain-la-Neuve"
+louvain_la_neuve = Club.create!(name: "Louvain-la-Neuve Club", description: "Club de sport ", address: "Bd Baudouin 1er, 1348 Ottignies-Louvain-la-Neuve")
+ClubMember.create!(club_id: louvain_la_neuve.id, user_id: stacy.id, is_manager: true)
+ClubMember.create!(club_id: louvain_la_neuve.id, user_id: bob.id)
+ClubMember.create!(club_id: louvain_la_neuve.id, user_id: kevin.id)
+
+first_hockey_team = Team.create!(club_id: louvain_la_neuve.id, name: "First Hockey Team", sport: "hockey")
+TeamMember.create!(team_id: first_hockey_team.id, user_id: stacy.id)
+TeamMember.create!(team_id: first_hockey_team.id, user_id: bob.id, is_coach: true)
+TeamMember.create!(team_id: first_hockey_team.id, user_id: kevin.id)
+
+first_football_team = Team.create!(club_id: louvain_la_neuve.id, name: "First Football Team", sport: "football")
+TeamMember.create!(team_id: first_football_team.id, user_id: kevin.id, is_coach: true)
+
+30.times do
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  user = User.create!(email: "#{first_name}.#{last_name}@email.com", first_name: first_name, last_name: last_name, password: "123123")
+  ClubMember.create!(club_id: white_star.id, user_id: user.id)
+  random = rand(1..2)
+  if random == 1
+    TeamMember.create!(team_id: first_hockey_team.id, user_id: user.id)
+    puts "created first team team member"
+  elsif random == 2
+    TeamMember.create!(team_id: first_football_team.id, user_id: user.id)
+    puts "created senior team team member"
+  end
+end
+puts "created 30 Louvain-la-neuve members"
+
+
+
+nilton_santos = Location.create!(name: "Louvain-la-Neuve hockey stadium", description: "Main Louvain-la-Neuve hockey staidum where all the magic happens", club_id: louvain_la_neuve.id)
+jogo_dois = Event.create!(start_time: DateTime.new(2025,2,3,4,5,6), end_time: DateTime.new(2025,2,3,6,5,6), description: "Game between Louvain-la-Neuve and White Star @Louvain-la-Neuve hockey stadium", title: "Louvain-la-Neuve vs White Star", team_id: first_hockey_team.id )
