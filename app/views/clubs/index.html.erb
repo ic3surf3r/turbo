@@ -3,7 +3,11 @@
   <div class="d-flex justify-content-end">
     <%= link_to 'New Club', new_club_path, class: 'btn btn-warning text-white' %>
   </div>
-  <% @clubs.each do |club| %>
-    <%= render "shared/club_card", club: club %>
+  <% if @clubs.length == 0 %>
+    <h4>You have not joined any clubs yet</h4>
+  <% else %>
+    <% @clubs.each do |club| %>
+      <%= render "shared/club_card", club: club %>
+    <% end %>
   <% end %>
 </div>

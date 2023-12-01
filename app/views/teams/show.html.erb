@@ -17,7 +17,7 @@
       <h2 class='my-3'>Members</h2>
       <div class='players-list-card br box-shadow list-group'>
         <% @team.team_members.each do |team_member| %>
-          <%= render 'shared/players_list', team_member: team_member %>
+          <%= render 'shared/players_list', team_member: team_member, team: @team %>
         <% end %>
       </div>
     </div>

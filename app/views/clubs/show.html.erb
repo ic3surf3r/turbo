@@ -8,8 +8,12 @@
         <%= render 'shared/invite_link', club: @club %>
       </div>
       <h2>Teams</h2>
-        <% @club.teams.each do |team| %>
-          <%= render 'shared/team_card', team: team %>
+        <% if @club.teams.length == 0 %>
+          <h4>This club does not have any teams yet</h4>
+        <% else %>
+          <% @club.teams.each do |team| %>
+            <%= render 'shared/team_card', team: team %>
+          <% end %>
         <% end %>
     </div>
 
@@ -18,8 +22,12 @@
     <div class="col-8">
       <div>
         <h2 class='mt-2'>Upcoming events</h2>
-        <% @club.teams.map { |team| team.events }.flatten.each do |event| %>
-          <%= render 'shared/event_card', event: event %>
+        <% if @upcoming_events.length == 0 %>
+          <h4>No upcoming events</h4>
+        <% else %>
+          <% @upcoming_events.each do |event| %>
+            <%= render 'shared/event_card', event: event %>
+          <% end %>
         <% end %>
       </div>
     </div>

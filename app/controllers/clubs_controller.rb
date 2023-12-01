@@ -9,6 +9,8 @@ class ClubsController < ApplicationController
     if @club.club_members.find_by(user_id: current_user.id).nil?
       redirect_to clubs_path
     end
+
+    @upcoming_events = @club.teams.map { |team| team.events.where("end_time < ?", Time.now) }.flatten
   end
 
   def new
