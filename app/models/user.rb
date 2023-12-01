@@ -38,4 +38,16 @@ class User < ApplicationRecord
       return false
     end
   end
+
+  def events
+    self.teams.flat_map do |team|
+      team.events
+    end
+  end
+
+  def upcoming_events
+    self.teams.flat_map do |team|
+      team.events.where("end_time < ?", Time.now)
+    end
+  end
 end

@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     @event.end_time = @event.start_time + (minutes * 60) + (hours * 60 * 60)
 
     if @event.save!
-      redirect_to team_events_path(@event)
+      redirect_to team_path(@event.team)
     else
       render :new, status: :unprocessable_entity
     end
@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @team = @event.team
     @event.destroy
-    redirect_to team_events_path(@team), status: :see_other
+    redirect_to team_path(@team), status: :see_other
   end
 
   private

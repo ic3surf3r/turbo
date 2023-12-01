@@ -1,29 +1,41 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <div>
+      <div class="my-3">
         <h2 class='mt-2'>My teams</h2>
-        <% current_user.teams.each do |team| %>
-          <%= render 'shared/team_card', team: team %>
+        <% if current_user.teams.length == 0 %>
+          <h4>You have not joined any teams yet</h4>
+        <% else %>
+          <% current_user.teams.each do |team| %>
+            <%= render 'shared/team_card', team: team %>
+          <% end %>
         <% end %>
       </div>
       <h2 class='mt-2'>My clubs</h2>
+      <% if current_user.clubs.length == 0 %>
+        <h4>You have not joined any clubs yet</h4>
+        <h5>Why not create one?</h5>
+        <%= link_to 'New Club', new_club_path, class: 'btn btn-warning text-white' %>
+      <% else %>
         <% current_user.clubs.each do |club| %>
           <%= render 'shared/club_card', club: club %>
         <% end %>
+      <% end %>
     </div>
 
 
 
     <div class="col-8">
-      <div>
+      <div class="my-3">
         <h2 class='mt-2'>Upcoming events</h2>
-        <% current_user.teams.each do |team| %>
-          <% team.events.each do |event| %>
+        <% if current_user.upcoming_events.length == 0 %>
+          <h4>You have no upcoming events</h4>
+        <% else %>
+          <% current_user.upcoming_events.each do |event| %>
             <%= render 'shared/event_card_teamname', event: event %>
           <% end %>
-      </div>
         <% end %>
+      </div>
     </div>
   </div>
 </div>
