@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_04_101153) do
+
+ActiveRecord::Schema[7.1].define(version: 2023_12_04_113858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "club_members", force: :cascade do |t|
     t.bigint "club_id", null: false
@@ -34,6 +41,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_101153) do
     t.index ["invite_token"], name: "index_clubs_on_invite_token", unique: true
   end
 
+  create_table "event_chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
@@ -44,6 +57,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_101153) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "address"
+    t.bigint "chatroom_id"
+    t.index ["chatroom_id"], name: "index_events_on_chatroom_id"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["team_id"], name: "index_events_on_team_id"
   end
@@ -56,6 +71,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_101153) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.index ["club_id"], name: "index_locations_on_club_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "team_members", force: :cascade do |t|
@@ -94,9 +119,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_101153) do
 
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "users"
+  add_foreign_key "events", "chatrooms"
   add_foreign_key "events", "locations"
   add_foreign_key "events", "teams"
   add_foreign_key "locations", "clubs"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
   add_foreign_key "teams", "clubs"
