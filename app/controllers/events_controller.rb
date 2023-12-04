@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @attendance = Attendance.find_by(event: @event, team_member: TeamMember.find_by(user: current_user))
   end
 
   def new
@@ -19,6 +20,7 @@ class EventsController < ApplicationController
     @event.end_time = @event.start_time + (minutes * 60) + (hours * 60 * 60)
 
     if @event.save!
+      @event.team.team_members.each {|member| Attendance.create!(event: @event, team_member: member)}
       redirect_to team_path(@event.team)
     else
       render :new, status: :unprocessable_entity
