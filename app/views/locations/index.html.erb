@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row justify-content-center ">
+    <div class="mt-4 ml-362">
+      <h1>My locations</h1> <%= link_to 'Create location', new_club_location_path, class: "btn btn-primary br" %>
+    </div>
+      <div class="d-flex flex-column w-75">
+      <% if @locations.length == 0 %>
+        <h4>You have no locations yet</h4>
+      <% else %>
+          <% @locations.each do | location | %>
+            <div class="m-3">
+              <%= render 'shared/location_card', location: location %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+</div>

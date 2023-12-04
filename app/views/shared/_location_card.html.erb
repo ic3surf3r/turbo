@@ -1,0 +1,17 @@
+<%= link_to club_locations_path(location), class:'inherit-all' do %>
+  <div class="location-card br box-shadow bg-info p-2 ">
+    <h2><%= location.name %></h2>
+    <h4><%= location.club.name %></h4>
+    <p><%= location.description %></p>
+    <% if current_user.manager?(location) %>
+      <div class='buttons'>
+        <%= link_to edit_location_path(location), class: 'btn btn-primary br' do %>
+          <i class="fa-regular fa-pen-to-square"></i>
+        <% end %>
+        <%= link_to location_path(location), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white' do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
