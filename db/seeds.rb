@@ -54,6 +54,7 @@ puts "created 30 extra White star members"
 
 main_field = Location.create!(name: "Main field", description: "Main field where the most important games are played every week", club_id: white_star.id)
 jogo_um = Event.create!(start_time: DateTime.new(2025,2,3,4,5,6), end_time: DateTime.new(2025,2,3,6,5,6), description: "Game between White Star and Louvain-la-neuve @Main field", title: "White Star vs Louvain-la-Neuve", location_id: main_field.id, team_id: first_team.id )
+jogo_um.team.team_members.each{|member| Attendance.create!(event: jogo_um, team_member: member)}
 
 puts "Creating Louvain-la-Neuve"
 louvain_la_neuve = Club.create!(name: "Louvain-la-Neuve Club", description: "Club de sport ", address: "Bd Baudouin 1er, 1348 Ottignies-Louvain-la-Neuve")
@@ -87,3 +88,4 @@ puts "created 30 Louvain-la-neuve members"
 
 nilton_santos = Location.create!(name: "Louvain-la-Neuve hockey stadium", description: "Main Louvain-la-Neuve hockey staidum where all the magic happens", club_id: louvain_la_neuve.id)
 jogo_dois = Event.create!(start_time: DateTime.new(2025,2,3,4,5,6), end_time: DateTime.new(2025,2,3,6,5,6), description: "Game between Louvain-la-Neuve and White Star @Louvain-la-Neuve hockey stadium", title: "Louvain-la-Neuve vs White Star", team_id: first_hockey_team.id )
+jogo_dois.team.team_members.each{|member| Attendance.create!(event: jogo_dois, team_member: member)}

@@ -18,7 +18,7 @@
       <div class="event-card box-shadow br p-3">
         <h1>Attendance form</h1>
         <%= simple_form_for [@event, @attendance] do |f| %>
-          <%= f.input :absence %>
+          <%= f.collection_radio_buttons :absence, [[true, 'Absent'], [false, 'Present']], :first, :last %>
           <%= f.input :comment %>
           <%= f.button :submit, "Mark as absent", class: "btn btn-primary br" %>
         <% end %>
@@ -26,7 +26,7 @@
       <h2>Members</h2>
       <h4 class='my-2'>Present</h4>
       <div class='players-list-card br box-shadow list-group'>
-        <% @absent_team_members = @event.team.team_members.select{|team_member| team_member.attendances.where(event: @event, absence: true).exists?} %>
+        <% @absent_team_members = @event.team.team_members.select{|team_member| team_member.attendances.find_by(event: @event).absence == true if team_member.attendances.find_by(event: @event) } %>
         <% @present_team_members = @event.team.team_members - @absent_team_members %>
           <% @present_team_members.each do |team_member| %>
             <%= render 'shared/players_list', team_member: team_member, team: @event.team %>

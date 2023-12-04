@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :club_members, only: %i[destroy edit update]
   resources :team_members, only: %i[destroy edit update]
   resources :events, only: %i[destroy edit update show] do
-    resources :attendances, only: %i[new create]
+    resources :attendances, only: %i[update]
   end
 
   resources :team_members, only: %i[destroy]
