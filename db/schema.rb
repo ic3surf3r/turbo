@@ -13,6 +13,7 @@
 ActiveRecord::Schema[7.1].define(version: 2023_12_04_150956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -93,8 +94,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_150956) do
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "address"
     t.bigint "chatroom_id"
+    t.string "address"
     t.index ["chatroom_id"], name: "index_events_on_chatroom_id"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["team_id"], name: "index_events_on_team_id"
