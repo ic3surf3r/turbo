@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'invite/:invite_token', to: "club_members#new"
     resources :club_members, only: %i[index]
     resources :teams, only: %i[index new create]
-    # resources :locations, only: %i[new create edit update destroy]
+    #resources :locations, only: %i[new create edit update destroy]
   end
 
   resources :teams, only: %i[show edit update destroy] do
