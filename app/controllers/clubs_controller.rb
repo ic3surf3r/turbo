@@ -36,6 +36,21 @@ class ClubsController < ApplicationController
     end
   end
 
+  def edit
+    @club = Club.find(params[:id])
+  end
+
+  def update
+    @club = Club.find(params[:id])
+    @club.update(club_params)
+
+    if @club.save
+      redirect_to club_path(@club)
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def cal
     @club = Club.find(params[:club_id])
 

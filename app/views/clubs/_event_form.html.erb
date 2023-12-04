@@ -16,6 +16,9 @@
                     label: false,
                     input_html: {class: "border-dark my-4 bg-info"},
                     collection: club.teams %>
+        <%= f.input :address,
+                    label: false,
+                    input_html: { placeholder: "Address", class: "border-dark my-4 bg-info"} %>
         <%= f.input :start_time,
                     as: :string,
                     label: false,
