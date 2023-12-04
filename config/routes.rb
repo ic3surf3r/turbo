@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  # chatroom test
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
+
   # Defines the root path route ("/")
   # root "posts#index"
   resources :clubs do
@@ -23,10 +28,10 @@ Rails.application.routes.draw do
     resources :team_members, only: %i[index new create]
   end
 
-  resources :events, only: :create
-
   resources :club_members, only: %i[destroy edit update]
   resources :team_members, only: %i[destroy edit update]
-  resources :events, only: %i[destroy edit update show]
+  resources :events, only: %i[create destroy edit update show] do
+    get "/chat", to: "events#chat"
+  end
   resources :team_members, only: %i[destroy]
 end
