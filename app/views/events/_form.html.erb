@@ -13,6 +13,9 @@
         <%= f.input :team_id,
                     label: false,
                     input_html: { placeholder: "Team", class: "border-dark my-4 bg-info"}, as: :hidden, input_html: { value: team.id } %>
+        <%= f.input :address,
+                    label: false,
+                    input_html: { placeholder: "Address", class: "border-dark my-4 bg-info"} %>
         <%= f.input :start_time,
                     as: :string,
                     label: false,

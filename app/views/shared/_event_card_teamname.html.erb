@@ -9,6 +9,7 @@
         </div>
         <div class='mx-3'>
           <h3><strong><%= event.title %></strong></h3>
+          <em> <%= event.address %></em>
           <% if event.location_id %>
             <small> <strong>@<%= (Location.find(event.location_id)).name %></strong></small>
           <% end %>
