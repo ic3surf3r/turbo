@@ -17,16 +17,29 @@
     <div class="col-5">
       <div class="event-card box-shadow br p-3">
         <h1>Attendance form</h1>
+        <%= simple_form_for [@event, @attendance] do |f| %>
+          <%= f.input :absence %>
+          <%= f.input :comment %>
+          <%= f.button :submit, "Mark as absent", class: "btn btn-primary br" %>
+        <% end %>
       </div>
       <h2>Members</h2>
+      <h4 class='my-2'>Present</h4>
       <div class='players-list-card br box-shadow list-group'>
-        <% @event.team.team_members.each do |team_member| %>
-          <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
-        <% end %>
+        <% @absent_team_members = @event.team.team_members.select{|team_member| team_member.attendances.where(event: @event, absence: true).exists?} %>
+        <% @present_team_members = @event.team.team_members - @absent_team_members %>
+          <% @present_team_members.each do |team_member| %>
+            <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
+          <% end %>
+      </div>
+      <h4 class='my-2'>Absent</h4>
+      <div class='players-list-card br box-shadow list-group'>
+          <% @absent_team_members.each do |team_member| %>
+            <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
+          <% end %>
       </div>
     </div>
 
     </div>
   </div>
 </div>
-

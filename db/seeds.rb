@@ -15,6 +15,7 @@ puts "Deleting clubs"
 Club.destroy_all
 
 
+
 puts "Creating users"
 bob = User.create!(email: "bob@email.com", first_name: "Bob", last_name: "Smith", password: "123123")
 stacy = User.create!(email: "stacy@email.com", first_name: "Stacy", last_name: "Valentine", password: "123123")
