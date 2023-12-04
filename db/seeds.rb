@@ -23,6 +23,10 @@ kevin = User.create!(email: "kevin@email.com", first_name: "Kevin", last_name: "
 
 puts "Creating White Starr"
 white_star = Club.create!(name: "Royal White Star A.C.", description: "Hockey team in first division", address: "Chemin du Struykbeken 2, 1200 Bruxelles")
+white_star.photo.attach(
+  io: File.open('app/assets/images/white_star.gif'),
+  filename: 'white_star.gif'
+)
 ClubMember.create!(club_id: white_star.id, user_id: bob.id)
 ClubMember.create!(club_id: white_star.id, user_id: stacy.id, is_manager: true)
 ClubMember.create!(club_id: white_star.id, user_id: kevin.id)
@@ -58,6 +62,10 @@ jogo_um.team.team_members.each{|member| Attendance.create!(event: jogo_um, team_
 
 puts "Creating Louvain-la-Neuve"
 louvain_la_neuve = Club.create!(name: "Louvain-la-Neuve Club", description: "Club de sport ", address: "Bd Baudouin 1er, 1348 Ottignies-Louvain-la-Neuve")
+louvain_la_neuve.photo.attach(
+  io: File.open('app/assets/images/leuven_la_neuve.png'),
+  filename: 'leuven_la_neuve.png'
+)
 ClubMember.create!(club_id: louvain_la_neuve.id, user_id: stacy.id)
 ClubMember.create!(club_id: louvain_la_neuve.id, user_id: bob.id, is_manager: true)
 ClubMember.create!(club_id: louvain_la_neuve.id, user_id: kevin.id)
