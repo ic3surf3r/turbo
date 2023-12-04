@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :team_members, dependent: :destroy
   has_many :teams, through: :team_members
   has_many :clubs, through: :club_members
+  has_many :messages, dependent: :destroy
 
 
   # Include default devise modules. Others available are:

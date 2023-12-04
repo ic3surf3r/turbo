@@ -2,7 +2,7 @@
   <div class="team-card br box-shadow">
     <div class="d-flex">
       <% if club.photo.key %>
-        <div class="me-3 d-flex flex-column justify-content-center h-100">
+        <div class="me-3 d-flex flex-column justify-content-center h-100 my-auto">
           <div style="max-width: 50px" >
             <%= cl_image_tag club.photo.key, alt: "#{club.name} logo", class: 'img-fill' %>
           </div>
