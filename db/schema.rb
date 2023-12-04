@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_04_092550) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_04_113858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_092550) do
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "chatroom_id"
+    t.index ["chatroom_id"], name: "index_events_on_chatroom_id"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["team_id"], name: "index_events_on_team_id"
   end
@@ -114,6 +116,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_092550) do
 
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "users"
+  add_foreign_key "events", "chatrooms"
   add_foreign_key "events", "locations"
   add_foreign_key "events", "teams"
   add_foreign_key "locations", "clubs"

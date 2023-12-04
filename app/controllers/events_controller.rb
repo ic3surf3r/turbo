@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_team, only: [:new]
+  before_action :set_team, only: %i[new]
   def index
     @events = current_user.teams.map {|team| team.events}.flatten
   end
@@ -46,6 +46,17 @@ class EventsController < ApplicationController
     @team = @event.team
     @event.destroy
     redirect_to team_path(@team), status: :see_other
+  end
+
+  def chat
+    @event = Event.find(params[:event_id])
+    if @event.chatroom_id
+      redirect_to chatroom_path(@event.chatroom_id)
+    else
+      Chatroom.find_by(name: @event.title) ? @chatroom = Chatroom.find_by(name: @event.title) : @chatroom = Chatroom.create(name: @event.title)
+      @event.chatroom_id = @chatroom.id
+      redirect_to chatroom_path(@event.chatroom_id)
+    end
   end
 
   private
