@@ -15,6 +15,9 @@
 
 
     <div class="col-5">
+      <div class="my-20">
+        <%= link_to "Chat", event_chat_path(@event), class: "btn btn-dark w-100" %>
+      </div>
       <div class="event-card box-shadow br p-3">
         <h1>Attendance form</h1>
         <%= simple_form_for [@event, @attendance] do |f| %>
