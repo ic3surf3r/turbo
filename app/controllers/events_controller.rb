@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @attendance = Attendance.find_by(event: @event, team_member: TeamMember.find_by(user: current_user))
+    @attendance = Attendance.find_by(event: @event, team_member: TeamMember.find_by(user: current_user, team: @event.team))
 
     if @event.address
       @marker =
@@ -15,11 +15,11 @@ class EventsController < ApplicationController
           lng: @event.longitude
         }
     else
-      @marker =
-        {
-          lat: @event.team.club.latitude,
-          lng: @event.team.club.longitude
-        }
+      # @marker =
+      #   {
+      #     lat: @event.team.club.latitude,
+      #     lng: @event.team.club.longitude
+      #   }
     end
   end
 
@@ -82,6 +82,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_time, :team_id, :duration)
+    params.require(:event).permit(:title, :description, :start_time, :team_id, :duration, :team_member_id)
   end
 end

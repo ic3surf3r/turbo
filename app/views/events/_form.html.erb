@@ -13,6 +13,7 @@
         <%= f.input :team_id,
                     label: false,
                     input_html: { placeholder: "Team", class: "border-dark my-4 bg-info"}, as: :hidden, input_html: { value: team.id } %>
+        <%= f.input :team_member_id, label: false, prompt: "Coach Responsible", collection: team.team_members.where( is_coach: true ), label_method: :member_name, value_method: :id, input_html: {class: "border-dark my-4 bg-info"}  %>
         <%= f.input :address,
                     label: false,
                     input_html: { placeholder: "Address", class: "border-dark my-4 bg-info"} %>
@@ -21,7 +22,7 @@
                     label: false,
                     input_html: { data: { controller: "datepicker" }, placeholder: "Date", class: "border-dark my-4 bg-info" } %>
         <%= f.input :duration,
-                    prompt: "Set time",
+                    prompt: "Duration",
                     label:false,
                     collection: ['0:15', '0:30', '0:45', '1:00', '1:15', '1:30', '1:45', '2:00', '2:15', '2:30', '2:45', '3:00', '3:15', '3:30', '3:45', '4:00'],
                     input_html: { class: "border-dark my-4 bg-info"}  %>
