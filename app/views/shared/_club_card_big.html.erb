@@ -1,0 +1,33 @@
+<%= link_to club_path(club), class: "inherit-all" do %>
+  <div class="team-card br box-shadow position-relative">
+    <div class="d-flex flex-column">
+      <% if club.photo.key %>
+        <div class="d-flex flex-column justify-content-center h-100 mx-auto">
+          <div>
+            <%= cl_image_tag club.photo.key, alt: "#{club.name} logo", class: 'img-fill' %>
+          </div>
+          <br>
+        </div>
+      <% end %>
+      <div class="something">
+        <h2><%= club.name %></h2>
+        <h5><%= club.address %></h5>
+        <h6>Club Locations: <%= club.locations.count %></h6>
+        <p><%= club.description %></p>
+        <% if user = ClubMember.find_by(user: current_user, club: club).is_manager %>
+        <div class='buttons'>
+          <%= link_to club_path(club), class: 'btn btn-primary br' do %>
+            <i class="fa-regular fa-pen-to-square"></i>
+          <% end %>
+          <%= link_to club_cal_path(club), class: 'btn btn-warning br text-white' do %>
+            <i class="fa-regular fa-calendar-days"></i>
+          <% end %>
+          <%= link_to club_path(club), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white' do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
