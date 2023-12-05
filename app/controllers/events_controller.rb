@@ -7,6 +7,22 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @attendance = Attendance.find_by(event: @event, team_member: TeamMember.find_by(user: current_user))
+
+    if @event.address.exists?
+      @markers = @event.geocoded.map do |event|
+        {
+          lat: event.latitude,
+          lng: event.longitude
+        }
+      end
+    else
+      @marker = @event.team.club.geocoded.map do |club|
+        {
+          lat: club.latitude,
+          lng: club.longitude
+        }
+      end
+    end
   end
 
   def new
