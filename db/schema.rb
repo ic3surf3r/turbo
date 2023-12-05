@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_04_150956) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_05_085157) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,12 +79,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_150956) do
     t.index ["invite_token"], name: "index_clubs_on_invite_token", unique: true
   end
 
-  create_table "event_chatrooms", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "events", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
@@ -94,8 +88,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_150956) do
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "chatroom_id"
     t.string "address"
+    t.bigint "chatroom_id"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["chatroom_id"], name: "index_events_on_chatroom_id"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["team_id"], name: "index_events_on_team_id"

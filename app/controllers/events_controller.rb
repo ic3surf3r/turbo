@@ -7,6 +7,20 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @attendance = Attendance.find_by(event: @event, team_member: TeamMember.find_by(user: current_user))
+
+    if @event.address
+      @marker =
+        {
+          lat: @event.latitude,
+          lng: @event.longitude
+        }
+    else
+      @marker =
+        {
+          lat: @event.team.club.latitude,
+          lng: @event.team.club.longitude
+        }
+    end
   end
 
   def new
