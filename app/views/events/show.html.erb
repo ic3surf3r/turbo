@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-7">
+    <div class='fixed-on-scroll'>
       <div class="event-card box-shadow br p-3">
         <h2><%= @event.title %></h2>
         <p><%= @event.description %></p>
@@ -13,6 +14,7 @@
           data-controller="map"
           data-map-marker-value="<%= @marker.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      </div>
       </div>
     </div>
 
