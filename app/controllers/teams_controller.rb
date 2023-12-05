@@ -56,6 +56,19 @@ class TeamsController < ApplicationController
     puts 'hello'
   end
 
+  def coach
+    @team_member = TeamMember.find(params[:team][:team_members])
+    @team = Team.find(params[:team_id])
+
+    unless current_user.coach_or_manager?(@team)
+      redirect_to team_path(@team)
+    end
+
+    @team_member.make_coach
+
+    redirect_to team_path(@team)
+  end
+
   private
 
   def set_club
