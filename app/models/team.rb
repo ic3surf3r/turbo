@@ -4,4 +4,13 @@ class Team < ApplicationRecord
   has_many :events, dependent: :destroy
   validates :sport, :name, :description, presence: true
   validates :name, uniqueness: true
+
+  def valid_sport?
+    sports = %w[football basketball hockey tennis]
+    sports.include?(self.sport.strip.downcase)
+  end
+
+  def get_icon
+    "sports/#{self.sport.strip.downcase}.svg"
+  end
 end

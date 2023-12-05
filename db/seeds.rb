@@ -217,7 +217,7 @@ louvain_la_neuve.photo.attach(
   io: File.open('app/assets/images/leuven_la_neuve.png'),
   filename: 'leuven_la_neuve.png'
 )
-white_star.save!
+louvain_la_neuve.save!
 
 # Creating managers + coaches club members
 ClubMember.create!(club_id: louvain_la_neuve.id, user_id: louis.id)
@@ -367,5 +367,5 @@ first_training_u19_b1_w2.team.team_members.each{|member| Attendance.create!(even
 second_training_u19_b1_w2 = Event.create!(start_time: DateTime.new(2023, 12, 13, 21, 15, 0), end_time: DateTime.new(2023, 12, 13, 22, 15, 0), description: "Technical + tactical training", title: "Tuesday training", location_id: main_field_lln.id, team_id: u19_b1.id )
 second_training_u19_b1_w2.team.team_members.each{|member| Attendance.create!(event: second_training_u19_b1_w2, team_member: member)}
 
-first_match_u19_b1_w2 = Event.create!(start_time: DateTime.new(2023, 12, 19, 14, 30, 0), end_time: DateTime.new(2023, 12, 19, 15, 30, 0), description: "Homegame against rivals of wallonia", title: "Gameday - LLN vs Wat Ducks", location_id: main_field_lln.id, team_id: u19_b1.id )
+first_match_u19_b1_w2 = Event.create!(start_time: DateTime.new(2023, 12, 19, 14, 30, 0), end_time: DateTime.new(2023, 12, 19, 15, 30, 0), description: "Homegame against rivals of wallonia", title: "Gameday - LLN vs Wavre", location_id: main_field_lln.id, team_id: u19_b1.id )
 first_match_u19_b1_w2.team.team_members.each{|member| Attendance.create!(event: first_match_u19_b1_w2, team_member: member)}
