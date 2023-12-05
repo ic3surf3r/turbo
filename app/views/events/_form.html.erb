@@ -15,7 +15,8 @@
                     input_html: { placeholder: "Team", class: "border-dark my-4 bg-info"}, as: :hidden, input_html: { value: team.id } %>
         <%= f.input :address,
                     label: false,
-                    input_html: { placeholder: "Address", class: "border-dark my-4 bg-info"} %>
+                    input_html: {data: {address_autocomplete_target: "address"}, placeholder: "Address", class:"d-none"},
+                    wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
         <%= f.input :start_time,
                     as: :string,
                     label: false,

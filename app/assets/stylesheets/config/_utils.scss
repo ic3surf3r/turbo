@@ -29,6 +29,10 @@
   margin: 0 20px;
 }
 
+.mb-20 {
+  margin-bottom: 20px;
+}
+
 .img-fill {
   height: 100%;
   width: 100%;
@@ -45,4 +49,9 @@
 .iconize {
   width: 20px;
   height: 20px;
+}
+
+.fixed-on-scroll{
+  position: sticky;
+  top: 30px;
 }
