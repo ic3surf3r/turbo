@@ -3,15 +3,12 @@
     <div class="col-4">
       <div>
         <h2 class='mt-2'>Club Page</h2>
-        <%= render 'shared/club_card', club: @club %>
+        <%= render 'shared/club_card_big', club: @club %>
         <%= render 'shared/invite_link', club: @club %>
       </div>
       <div>
         <h2>Teams</h2>
         <%= link_to 'Create team', new_club_team_path(@club), class:'btn btn-primary br' %>
-        <% @club.teams.each do |team| %>
-          <%= render 'shared/team_card', team: team %>
-        <% end %>
         <% if @club.teams.length == 0 %>
           <h4>This club does not have any teams yet</h4>
         <% else %>
