@@ -15,11 +15,11 @@ class EventsController < ApplicationController
           lng: @event.longitude
         }
     else
-      # @marker =
-      #   {
-      #     lat: @event.team.club.latitude,
-      #     lng: @event.team.club.longitude
-      #   }
+      @marker =
+        {
+          lat: @event.team.club.latitude,
+          lng: @event.team.club.longitude
+        }
     end
   end
 
@@ -82,6 +82,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_time, :team_id, :duration, :team_member_id)
+    params.require(:event).permit(:title, :description, :start_time, :team_id, :duration, :address, :team_member_id)
   end
 end

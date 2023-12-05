@@ -5,8 +5,9 @@ class Club < ApplicationRecord
   has_many :club_members, dependent: :destroy
   has_many :users, through: :club_members
   has_many :locations, dependent: :destroy
-
+  geocoded_by :address
   validates :name, :description, :address, presence: true
+  after_validation :geocode, if: :will_save_change_to_address?
 
   def member?(user)
     users.include?(user)
