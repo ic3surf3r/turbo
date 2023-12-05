@@ -1,14 +1,14 @@
 <div class="container">
   <h1>My teams</h1>
-  <div class="d-flex">
     <% if current_user.teams.length == 0 %>
       <h4>You have not joined any teams yet</h4>
     <% else %>
+    <div class="row">
       <% @teams.each do | team | %>
-        <div class="m-3">
-          <%= render 'shared/team_card', team: team %>
+        <div class="col-lg-6 col-12">
+            <%= render 'shared/team_card', team: team %>
         </div>
       <% end %>
+    </div>
     <% end %>
-  </div>
 </div>
