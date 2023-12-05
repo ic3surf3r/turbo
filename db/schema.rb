@@ -94,9 +94,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_152037) do
     t.bigint "chatroom_id"
     t.float "latitude"
     t.float "longitude"
+    t.bigint "team_member_id"
     t.index ["chatroom_id"], name: "index_events_on_chatroom_id"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["team_id"], name: "index_events_on_team_id"
+    t.index ["team_member_id"], name: "index_events_on_team_member_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -161,6 +163,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_152037) do
   add_foreign_key "club_members", "users"
   add_foreign_key "events", "chatrooms"
   add_foreign_key "events", "locations"
+  add_foreign_key "events", "team_members"
   add_foreign_key "events", "teams"
   add_foreign_key "locations", "clubs"
   add_foreign_key "messages", "chatrooms"
