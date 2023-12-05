@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only: %i[show edit update destroy] do
+    post '/coach', to: 'teams#coach'
     resources :events, only: %i[index new]
     resources :team_members, only: %i[index new create]
   end

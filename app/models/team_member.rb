@@ -8,4 +8,9 @@ class TeamMember < ApplicationRecord
   def member_name
     self.user.fullname
   end
+
+  def make_coach
+    self.is_coach = true
+    self.save!
+  end
 end
