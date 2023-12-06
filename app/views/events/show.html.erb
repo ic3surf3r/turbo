@@ -37,7 +37,7 @@
           <%= simple_form_for [@event, @attendance] do |f| %>
             <%= f.collection_radio_buttons :absence, [[true, 'Absent'], [false, 'Present']], :first, :last %>
             <%= f.input :comment %>
-            <%= f.button :submit, "Mark as absent", class: "btn btn-primary br" %>
+            <%= f.button :submit, "Save Attendance", class: "btn btn-primary br" %>
           <% end %>
         </div>
       <% end %>
@@ -50,12 +50,18 @@
             <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
           <% end %>
       </div>
-      <h4 class='my-2'>Absent</h4>
-      <div class='players-list-card br box-shadow list-group'>
-          <% @absent_team_members.each do |team_member| %>
-            <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
-          <% end %>
-      </div>
+      <% if @absent_team_members.length != 0 %>
+        <h4 class='my-2'>Absent</h4>
+        <div class='players-list-card br box-shadow list-group'>
+            <% @absent_team_members.each do |team_member| %>
+              <% if current_user.coach_or_manager?(@event.team) %>
+                <%= render 'shared/players_list_comment', team_member: team_member, team: @event.team %>
+              <% else %>
+                <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
+              <% end %>
+            <% end %>
+        </div>
+        <% end %>
       <br>
     </div>
   </div>
