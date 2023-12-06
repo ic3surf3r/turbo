@@ -100,7 +100,7 @@ ClubMember.create!(club_id: white_star.id, user_id: julie.id)
 
 # Creating first team
 puts "Creating first team"
-first_team = Team.create!(club_id: white_star.id, name: "Men's first team", sport: "Hockey", description: "Playing in honour division")
+first_team = Team.create!(club_id: white_star.id, name: "Men's First Team", sport: "Hockey", description: "Playing in honour division")
 
 # Creating first team members
 puts "Creating team members of first team"
@@ -151,7 +151,7 @@ second_field = Location.create!(name: "Second field", description: "Field locate
 first_trainig_w1 = Event.create!(start_time: DateTime.new(2023, 12, 5, 19, 0, 0), end_time: DateTime.new(2023, 12, 5, 21, 0, 0), description: "Physical + technical training", title: "Tuesday training", location_id: main_field.id, team_id: first_team.id )
 first_trainig_w1.team.team_members.each{|member| Attendance.create!(event: first_trainig_w1, team_member: member)}
 
-second_training_w1 = Event.create!(start_time: DateTime.new(2023, 12, 6, 18, 40, 0), end_time: DateTime.new(2023, 12, 5, 21, 0, 0), description: "Video + technical training", title: "Wednesday training", location_id: main_field.id, team_id: first_team.id )
+second_training_w1 = Event.create!(start_time: DateTime.new(2023, 12, 6, 18, 40, 0), end_time: DateTime.new(2023, 12, 6, 21, 0, 0), description: "Video + technical training", title: "Wednesday training", location_id: main_field.id, team_id: first_team.id )
 second_training_w1.team.team_members.each{|member| Attendance.create!(event: second_training_w1, team_member: member)}
 
 third_training_w1 = Event.create!(start_time: DateTime.new(2023, 12, 8, 19, 30, 0), end_time: DateTime.new(2023, 12, 8, 21, 0, 0), description: "PC + Little matches", title: "Friday training", location_id: main_field.id, team_id: first_team.id )
@@ -161,16 +161,16 @@ first_match_w1 = Event.create!(start_time: DateTime.new(2023, 12, 10, 15, 0, 0),
 first_match_w1.team.team_members.each{|member| Attendance.create!(event: first_match_w1, team_member: member)}
 
 # Second week 11-17/12/2023
-first_trainig_w2 = Event.create!(start_time: DateTime.new(2023, 12, 12, 19, 0, 0), end_time: DateTime.new(2023, 12, 5, 21, 0, 0), description: "Physical + technical training", title: "Tuesday training", location_id: main_field.id, team_id: first_team.id )
-first_trainig_w2.team.team_members.each{|member| Attendance.create!(event: first_trainig_w2, team_member: member)}
+first_training_w2 = Event.create!(start_time: DateTime.new(2023, 12, 12, 19, 0, 0), end_time: DateTime.new(2023, 12, 12, 21, 0, 0), description: "Physical + technical training", title: "Tuesday training", location_id: main_field.id, team_id: first_team.id )
+first_training_w2.team.team_members.each{|member| Attendance.create!(event: first_training_w2, team_member: member)}
 
-second_training_w2 = Event.create!(start_time: DateTime.new(2023, 12, 13, 18, 40, 0), end_time: DateTime.new(2023, 12, 5, 21, 0, 0), description: "Video + technical training", title: "Wednesday training", location_id: main_field.id, team_id: first_team.id )
+second_training_w2 = Event.create!(start_time: DateTime.new(2023, 12, 13, 18, 40, 0), end_time: DateTime.new(2023, 12, 13, 21, 0, 0), description: "Video + technical training", title: "Wednesday training", location_id: main_field.id, team_id: first_team.id )
 second_training_w2.team.team_members.each{|member| Attendance.create!(event: second_training_w2, team_member: member)}
 
-third_training_w2 = Event.create!(start_time: DateTime.new(2023, 12, 15, 19, 30, 0), end_time: DateTime.new(2023, 12, 8, 21, 0, 0), description: "PC + Little matches", title: "Friday training", location_id: main_field.id, team_id: first_team.id )
+third_training_w2 = Event.create!(start_time: DateTime.new(2023, 12, 15, 19, 30, 0), end_time: DateTime.new(2023, 12, 15, 21, 0, 0), description: "PC + Little matches", title: "Friday training", location_id: main_field.id, team_id: first_team.id )
 third_training_w2.team.team_members.each{|member| Attendance.create!(event: third_training_w2, team_member: member)}
 
-first_match_w2 = Event.create!(start_time: DateTime.new(2023, 12, 17, 15, 0, 0), end_time: DateTime.new(2023, 12, 10, 16, 30, 0), description: "Homegame against rivals", title: "Gameday - White Star vs Uccle Sport", location_id: main_field.id, team_id: first_team.id )
+first_match_w2 = Event.create!(start_time: DateTime.new(2023, 12, 17, 15, 0, 0), end_time: DateTime.new(2023, 12, 17, 16, 30, 0), description: "Homegame against rivals", title: "Gameday - White Star vs Uccle Sport", location_id: main_field.id, team_id: first_team.id )
 first_match_w2.team.team_members.each{|member| Attendance.create!(event: first_match_w2, team_member: member)}
 
 # 2nd user story
@@ -310,7 +310,7 @@ first_training_u14_b1_w1.team.team_members.each{|member| Attendance.create!(even
 second_training_u14_b1_w1 = Event.create!(start_time: DateTime.new(2023, 12, 6, 16, 30, 0), end_time: DateTime.new(2023, 12, 6, 18, 0, 0), description: "Technical training", title: "Wednesday training", location_id: main_field_lln.id, team_id: u14_b1.id )
 second_training_u14_b1_w1.team.team_members.each{|member| Attendance.create!(event: second_training_u14_b1_w1, team_member: member)}
 
-first_match_u14_b1_w1 = Event.create!(start_time: DateTime.new(2023, 12, 9, 10, 30, 0), end_time: DateTime.new(2023, 12, 9, 10, 30, 0), description: "Homegame against last of division", title: "Gameday - LLN vs Daring", location_id: main_field_lln.id, team_id: u14_b1.id )
+first_match_u14_b1_w1 = Event.create!(start_time: DateTime.new(2023, 12, 9, 10, 30, 0), end_time: DateTime.new(2023, 12, 9, 11, 30, 0), description: "Homegame against last of division", title: "Gameday - LLN vs Daring", location_id: main_field_lln.id, team_id: u14_b1.id )
 first_match_u14_b1_w1.team.team_members.each{|member| Attendance.create!(event: first_match_u14_b1_w1, team_member: member)}
 
 #Second week 11-17/12
@@ -321,7 +321,7 @@ first_training_u14_b1_w2.team.team_members.each{|member| Attendance.create!(even
 second_training_u14_b1_w2 = Event.create!(start_time: DateTime.new(2023, 12, 13, 16, 30, 0), end_time: DateTime.new(2023, 12, 13, 18, 0, 0), description: "Technical + tactical training", title: "Wednesday training", location_id: main_field_lln.id, team_id: u14_b1.id )
 second_training_u14_b1_w2.team.team_members.each{|member| Attendance.create!(event: second_training_u14_b1_w2, team_member: member)}
 
-first_match_u14_b1_w2 = Event.create!(start_time: DateTime.new(2023, 12, 16, 10, 30, 0), end_time: DateTime.new(2023, 12, 16, 10, 30, 0), description: "Homegame against rivals of wallonia", title: "Gameday - LLN vs Wat Ducks", location_id: main_field_lln.id, team_id: u14_b1.id )
+first_match_u14_b1_w2 = Event.create!(start_time: DateTime.new(2023, 12, 16, 10, 30, 0), end_time: DateTime.new(2023, 12, 16, 11, 30, 0), description: "Homegame against rivals of wallonia", title: "Gameday - LLN vs Wat Ducks", location_id: main_field_lln.id, team_id: u14_b1.id )
 first_match_u14_b1_w2.team.team_members.each{|member| Attendance.create!(event: first_match_u14_b1_w2, team_member: member)}
 
 # Creating events for 2 weeks (U16-G1)
@@ -353,7 +353,7 @@ puts "Creating events for first week 4-10/12(U19-B1)"
 first_training_u19_b1_w1 = Event.create!(start_time: DateTime.new(2023, 12, 5, 20, 30, 0), end_time: DateTime.new(2023, 12, 5, 22, 0, 0), description: "Physical + technical training", title: "Tuesday training", location_id: main_field_lln.id, team_id: u19_b1.id )
 first_training_u19_b1_w1.team.team_members.each{|member| Attendance.create!(event: first_training_u19_b1_w1, team_member: member)}
 
-second_training_u19_b1_w1 = Event.create!(start_time: DateTime.new(2023, 12, 6, 21, 15, 0), end_time: DateTime.new(2023, 12, 6, 22, 15, 0), description: "Technical training + tests", title: "Wednesday training", location_id: main_field_lln.id, team_id: u19_b1.id )
+second_training_u19_b1_w1 = Event.create!(start_time: DateTime.new(2023, 12, 8, 21, 15, 0), end_time: DateTime.new(2023, 12, 8, 22, 15, 0), description: "Technical training + tests", title: "Wednesday training", location_id: main_field_lln.id, team_id: u19_b1.id )
 second_training_u19_b1_w1.team.team_members.each{|member| Attendance.create!(event: second_training_u19_b1_w1, team_member: member)}
 
 first_match_u19_b1_w1 = Event.create!(start_time: DateTime.new(2023, 12, 9, 14, 30, 0), end_time: DateTime.new(2023, 12, 9, 15, 30, 0), description: "Homegame for 6 points !", title: "Gameday - LLN vs Dragons", location_id: main_field_lln.id, team_id: u19_b1.id )
