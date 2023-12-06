@@ -37,7 +37,7 @@
           <%= simple_form_for [@event, @attendance] do |f| %>
             <%= f.collection_radio_buttons :absence, [[true, 'Absent'], [false, 'Present']], :first, :last %>
             <%= f.input :comment %>
-            <%= f.button :submit, "Mark as absent", class: "btn btn-primary br" %>
+            <%= f.button :submit, "Save Attendance", class: "btn btn-primary br" %>
           <% end %>
         </div>
       <% end %>
