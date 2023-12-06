@@ -12,7 +12,7 @@
           <% if event.location_id  %>
             <small> <strong>@<%= (Location.find(event.location_id)).name %></strong></small>
           <% end %>
-          <p><%= event.description %></p>
+          <p class="mb-0"><%= event.description %></p>
         </div>
     </div>
       <div class='mx-3'>
