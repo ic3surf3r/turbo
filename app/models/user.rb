@@ -49,6 +49,6 @@ class User < ApplicationRecord
   def upcoming_events
     self.teams.flat_map do |team|
       team.events.where("end_time > ?", Time.now)
-    end
+    end.sort_by { |event| event.start_time }
   end
 end
