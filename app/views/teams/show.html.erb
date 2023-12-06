@@ -8,21 +8,22 @@
       <div>
         <% if current_user.coach_or_manager?(@team) %>
           <%= simple_form_for [@team, @team_member]  do |f| %>
-            <div class="input-group">
-              <%= f.association :user, label: false, prompt: "Add team member", collection: User.where.not(id: @team.team_members.map{|tm| tm.user_id}), label_method: :fullname, value_method: :id, input_html: {class: "bg-info"} %>
-              <div>
+              <div class="input-group mb-3">
+                <%= f.association :user, label: false, wrapper: false, prompt: "Add team member", collection: User.where.not(id: @team.team_members.map{|tm| tm.user_id}), label_method: :fullname, value_method: :id, input_html: {class: "bg-info"} %>
                 <%= f.submit "Add", class: "btn btn-dark"%>
               </div>
-            </div>
           <% end %>
-          <%= simple_form_for(@team, method: :post, url: team_coach_path(@team))  do |f| %>
+          <form action="/teams/<%= @team.id %>/coach" method="post">
             <div class="input-group">
-              <%= f.input :team_members, label: false, prompt: 'Make team member coach', collection: @team.team_members.where(is_coach: false), label_method: :member_name, value_method: :id, input_html: {class: "bg-info"} %>
-              <div>
-                <%= f.submit "Submit", class: "btn btn-dark"%>
-              </div>
+              <select name="team[team_members]" id="team_team_members" class="form-select bg-info">
+                <option value="">Add coach</option>
+                <% @team.team_members.where(is_coach: false).each do |team_member| %>
+                  <option value="<%= team_member.id %>"><%= team_member.member_name %></option>
+                <% end %>
+              </select>
+              <input type="submit" name="commit" value="Add" class="btn btn-dark" data-disable-with="Submit">
             </div>
-          <% end %>
+          </form>
         <% end %>
       </div>
       <h2 class='my-3'>Members</h2>
