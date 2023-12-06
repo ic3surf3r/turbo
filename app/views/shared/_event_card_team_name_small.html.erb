@@ -1,5 +1,5 @@
 <%= link_to event_path(event), class:'inherit-all' do %>
-  <div class="event-card br shadow" style="min-width: 250px">
+  <div class="event-card br shadow <%= "red-glow" unless event.team_member_id %>" style="min-width: 250px">
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
         <div class='mx-3'>
