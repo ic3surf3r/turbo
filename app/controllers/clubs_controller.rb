@@ -38,6 +38,7 @@ class ClubsController < ApplicationController
 
   def edit
     @club = Club.find(params[:id])
+    redirect_to club_path(@club) unless current_user.manager?(@club)
   end
 
   def update
@@ -49,6 +50,13 @@ class ClubsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @club = Club.find(params[:id])
+    redirect_to club_path(@club) unless current_user.manager?(@club)
+    @club.destroy
+    redirect_to clubs_path, status: :see_other
   end
 
   def cal
