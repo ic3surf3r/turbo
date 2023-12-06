@@ -1,25 +1,17 @@
-<div class="container">
-  <div class="mx-auto" style="width: 30rem">
-    <div class="text-center mt-5">
-      <h2>New club</h2>
-    </div>
-        <%= simple_form_for(club) do |f| %>
-            <%= f.input :name,
-                    label: false,
-                    input_html: { placeholder: "Name", class: "border-dark my-4 bg-info"}   %>
-            <%= f.input :description,
-                    label: false,
-                    input_html: { placeholder: "Description", class: "border-dark my-4 bg-info"}   %>
-            <%= f.input :photo, as: :file, label: false, input_html: { placeholder: "Pick a team", class: "border-dark my-4 bg-info"}  %>
-            <%= f.input :address,
-                    label: false,
-                    input_html: {data: {address_autocomplete_target: "address"}, placeholder: "Address", class:"d-none"},
-                    wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
-          <div class="my-3form-actions text-center rounded d-grid gap-2">
-            <%= f.submit "Submit Event", class:"btn btn-secondary bg-dark"%>
-          </div>
-
-        <% end %>
-    </div>
+<%= simple_form_for(club) do |f| %>
+  <%= f.input :name,
+          label: false,
+          input_html: { placeholder: "Name", class: "border-dark my-4 bg-info"}   %>
+  <%= f.input :description,
+          label: false,
+          input_html: { placeholder: "Description", class: "border-dark my-4 bg-info"}   %>
+  <%= f.input :photo, as: :file, label: false, input_html: { placeholder: "Pick a team", class: "border-dark my-4 bg-info"}  %>
+  <%= f.input :address,
+          label: false,
+          input_html: {data: {address_autocomplete_target: "address"}, placeholder: "Address", class:"d-none"},
+          wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}%>
+  <div class="my-3form-actions text-center rounded d-grid gap-2">
+    <%= f.submit "Submit", class:"btn btn-secondary bg-dark"%>
   </div>
-</div>
+
+<% end %>
