@@ -1,0 +1,32 @@
+  <div class="team-card-show br box-shadow">
+    <div class="d-flex">
+      <% if team.club.photo.key %>
+        <div class="me-3 d-flex flex-column justify-content-center h-100 my-auto">
+          <div style="max-width: 50px" >
+            <%= cl_image_tag team.club.photo.key, alt: "#{team.club.name} logo", class: 'img-fill' %>
+          </div>
+        </div>
+      <% end %>
+      <div class="something">
+        <h2><%= team.name %></h2>
+        <% if team.valid_sport? %>
+          <p><strong><%= team.sport.capitalize %></strong> <%= image_tag team.get_icon, class: "iconize" %></p>
+        <% else %>
+          <p><strong><%= team.sport.capitalize %></strong></p>
+        <% end %>
+        <h4><%= team.club.name %></h4>
+        <p><%= team.description %></p>
+        <p><%= team.team_members.count %> members</p>
+        <% if current_user.coach_or_manager?(team) %>
+          <div class='buttons'>
+            <%= link_to edit_team_path(team), class: 'btn btn-primary br' do %>
+              <i class="fa-regular fa-pen-to-square"></i>
+            <% end %>
+            <%= link_to team_path(team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white' do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

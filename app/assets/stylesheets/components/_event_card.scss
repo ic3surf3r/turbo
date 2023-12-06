@@ -2,4 +2,9 @@
   background-color: white;
   padding: 5px 0px;
   margin: 20px 0px;
+
+  &:hover{
+    scale: 1.02;
+    transition: 0.3s;
+  }
 }
