@@ -50,16 +50,18 @@
             <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
           <% end %>
       </div>
-      <h4 class='my-2'>Absent</h4>
-      <div class='players-list-card br box-shadow list-group'>
-          <% @absent_team_members.each do |team_member| %>
-            <% if current_user.coach_or_manager?(@event.team) %>
-              <%= render 'shared/players_list_comment', team_member: team_member, team: @event.team %>
-            <% else %>
-              <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
+      <% if @absent_team_members.length != 0 %>
+        <h4 class='my-2'>Absent</h4>
+        <div class='players-list-card br box-shadow list-group'>
+            <% @absent_team_members.each do |team_member| %>
+              <% if current_user.coach_or_manager?(@event.team) %>
+                <%= render 'shared/players_list_comment', team_member: team_member, team: @event.team %>
+              <% else %>
+                <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
+              <% end %>
             <% end %>
-          <% end %>
-      </div>
+        </div>
+        <% end %>
       <br>
     </div>
   </div>
