@@ -9,7 +9,7 @@
         <% if current_user.coach_or_manager?(@team) %>
           <%= simple_form_for [@team, @team_member]  do |f| %>
               <div class="input-group mb-3">
-                <%= f.association :user, label: false, wrapper: false, prompt: "Add team member", collection: User.where.not(id: @team.team_members.map{|tm| tm.user_id}), label_method: :fullname, value_method: :id, input_html: {class: "bg-info"} %>
+                <%= f.association :user, label: false, wrapper: false, prompt: "Add team member", collection: (User.where.not(id: @team.team_members.map{|tm| tm.user_id}) & User.where(id: @team.club.club_members.map { |tm| tm.user_id })).uniq, label_method: :fullname, value_method: :id, input_html: {class: "bg-info"} %>
                 <%= f.submit "Add", class: "btn btn-dark"%>
               </div>
           <% end %>

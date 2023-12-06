@@ -7,14 +7,17 @@
           <p class='h1 m-0 '><%= event.start_time.strftime('%d') %></p>
           <p class='m-0'><%= event.start_time.strftime('%a') %></p>
         </div>
-        <div class='mx-3'>
-          <h3><strong><%= event.title %></strong></h3>
+        <div class='mx-3 '>
+        <div class='d-flex align-items-baseline'>
+          <h3><strong><%= event.title %>  </strong></h3>
+          <p class='mx-2'><%= event.team.name %></p>
+        </div>
           <em> <%= event.address %></em>
           <% if event.location_id %>
             <small> <strong>@<%= (Location.find(event.location_id)).name %></strong></small>
           <% end %>
           <p><%= event.description %></p>
-          <%= event.team.name %>
+          <p><%= event.team.club.name %></p>
         </div>
     </div>
       <div class='mx-3'>
