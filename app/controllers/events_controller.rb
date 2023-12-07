@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendance = Attendance.find_by(event: @event, team_member: TeamMember.find_by(user: current_user, team: @event.team))
 
-    if @event.address
+    if @event.address && @event.address != ""
       @marker =
         {
           lat: @event.latitude,
