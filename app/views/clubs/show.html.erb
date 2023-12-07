@@ -4,18 +4,17 @@
       <div>
         <h2 class='mt-2 text-white'>Club Page</h2>
         <%= render 'shared/club_card_big', club: @club %>
-        <%= render 'shared/invite_link', club: @club %>
+        <p class="my-5"><%= render 'shared/invite_link', club: @club %></p>
       </div>
-      <div>
-        <h2 class='text-white'>Teams</h2>
-        <%= link_to 'Create team', new_club_team_path(@club), class:'btn btn-warning text-white br' %>
-        <% if @club.teams.length == 0 %>
-          <h5 class="mt-3 text-white">This club does not have any teams yet</h5>
-        <% else %>
-          <% @club.teams.each do |team| %>
-            <%= render 'shared/team_card', team: team %>
+      <div class="mt-5">
+          <h2 class='text-white d-flex justify-content-between'>Teams <%= link_to 'Create team', new_club_team_path(@club), class:'btn btn-warning text-white br' %></h2>
+          <% if @club.teams.length == 0 %>
+            <h5 class="mt-3 text-white">This club does not have any teams yet</h5>
+          <% else %>
+            <% @club.teams.each do |team| %>
+              <%= render 'shared/team_card', team: team %>
+            <% end %>
           <% end %>
-        <% end %>
       </div>
     </div>
 
@@ -23,7 +22,7 @@
 
     <div class="col-8">
       <div>
-        <h2 class='mt-2 text-white'>Upcoming events</h2>
+        <h2 class='mt-2 text-white'>Upcoming Events</h2>
         <% if @upcoming_events.length == 0 %>
           <h4>No upcoming events</h4>
         <% else %>

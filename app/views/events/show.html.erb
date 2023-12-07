@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-7">
       <div class="fixed-on-scroll">
-        <div class="team-card-show box-shadow br p-3">
+        <div class="team-card-show box-shadow br px-4">
           <h2><%= @event.title %></h2>
           <p><%= @event.description %></p>
           <p><%= @event.start_time.strftime('%H:%M') %> - <%= @event.end_time.strftime('%H:%M') %></p>
@@ -36,10 +36,10 @@
         <%= link_to "Chat", event_chat_path(@event), class: "btn btn-dark w-100 br" %>
       </div>
       <% if @attendance %>
-        <div class="event-card box-shadow br p-3">
-          <h1>Will you be there?</h1>
+        <div class="event-card box-shadow br p-3 text-center">
+          <h3>Will you be there?</h3>
           <%= simple_form_for [@event, @attendance], html: {novalidate: true, class: "no-validation"} do |f| %>
-            <div class="toggle-radio mt-3">
+            <div class="toggle-radio m-3">
               <input type="radio" name="rdo" id="yes" value="yes" <%= "checked" unless  @attendance.absence%> >
               <input type="radio" name="rdo" id="no" value="no" <%= "checked" if  @attendance.absence%>>
               <div class="switch">
@@ -48,14 +48,13 @@
                 <span></span>
               </div>
             </div>
-            <%= f.input :comment, required: false, input_html: { class: "bg-info" } %>
+            <%= f.input :comment, label: false, required: false, input_html: { placeholder: "Tell the coach why", class: "bg-info" } %>
             <%= f.button :submit, "Save Attendance", class: "btn btn-primary br" %>
           <% end %>
         </div>
       <% end %>
-      <h2 class='text-white'>Members</h2>
-      <h4 class='my-2 text-white'>Present</h4>
-      <div class='players-list-card p-2 br box-shadow bg-white mb-5 list-group'>
+      <h4 class='my-3 text-white'>Present players</h4>
+      <div class='players-list-card p-2 br box-shadow bg-white mb-3 list-group'>
         <% @absent_team_members = @event.team.team_members.select{|team_member| team_member.attendances.find_by(event: @event).absence == true if team_member.attendances.find_by(event: @event) } %>
         <% @present_team_members = @event.team.team_members - @absent_team_members %>
         <% @present_team_members = @present_team_members.sort_by { |member | member.user.fullname} %>
@@ -65,16 +64,16 @@
           <% end %>
       </div>
       <% if @absent_team_members.length != 0 %>
-        <h4 class='my-2 text-white'>Absent</h4>
-        <div class='players-list-card br box-shadow list-group'>
-            <% @absent_team_members.each do |team_member| %>
-              <% if current_user.coach_or_manager?(@event.team) %>
-                <%= render 'shared/players_list_comment', team_member: team_member, team: @event.team %>
-              <% else %>
-                <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
+        <h4 class='text-white'>Absent players</h4>
+          <div class='players-list-card p-1 br box-shadow bg-white mb-1 list-group'>
+              <% @absent_team_members.each do |team_member| %>
+                <% if current_user.coach_or_manager?(@event.team) %>
+                  <%= render 'shared/players_list_comment', team_member: team_member, team: @event.team %>
+                <% else %>
+                  <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
+                <% end %>
               <% end %>
-            <% end %>
-        </div>
+          </div>
         <% end %>
       <br>
     </div>
