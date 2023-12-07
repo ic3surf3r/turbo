@@ -8,6 +8,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendance = Attendance.find_by(event: @event, team_member: TeamMember.find_by(user: current_user, team: @event.team))
 
+    @absent_team_members = @event.team.team_members.includes([:user]).select{|team_member| team_member.attendances.find_by(event: @event).absence == true if team_member.attendances.find_by(event: @event) }
+    @present_team_members = @event.team.team_members - @absent_team_members
+    @present_team_members = @present_team_members.sort_by { |member | member.user.fullname}
+    @absent_team_members = @absent_team_members.sort_by { |member | member.user.fullname}
+
     if @event.address && @event.address != ""
       @marker =
         {
