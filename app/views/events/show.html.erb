@@ -37,10 +37,18 @@
       </div>
       <% if @attendance %>
         <div class="event-card box-shadow br p-3">
-          <h1>Attendance form</h1>
-          <%= simple_form_for [@event, @attendance] do |f| %>
-            <%= f.collection_radio_buttons :absence, [[true, 'Absent'], [false, 'Present']], :first, :last %>
-            <%= f.input :comment %>
+          <h1>Will you be there?</h1>
+          <%= simple_form_for [@event, @attendance], html: {novalidate: true, class: "no-validation"} do |f| %>
+            <div class="toggle-radio mt-3">
+              <input type="radio" name="rdo" id="yes" value="yes" <%= "checked" unless  @attendance.absence%> >
+              <input type="radio" name="rdo" id="no" value="no" <%= "checked" if  @attendance.absence%>>
+              <div class="switch">
+                <label for="yes">Yes</label>
+                <label for="no">No</label>
+                <span></span>
+              </div>
+            </div>
+            <%= f.input :comment, required: false, input_html: { class: "bg-info" } %>
             <%= f.button :submit, "Save Attendance", class: "btn btn-primary br" %>
           <% end %>
         </div>
