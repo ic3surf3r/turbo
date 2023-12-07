@@ -16,7 +16,7 @@
               <%= link_to edit_event_path(@event), class: 'btn btn-primary br' do %>
                 <i class="fa-regular fa-pen-to-square"></i>
               <% end %>
-              <%= link_to event_path(@event.team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white' do %>
+              <%= link_to event_path(@event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white' do %>
                 <i class="fa-solid fa-trash"></i>
               <% end %>
             </div>
@@ -37,10 +37,18 @@
       </div>
       <% if @attendance %>
         <div class="event-card box-shadow br p-3">
-          <h1>Attendance form</h1>
-          <%= simple_form_for [@event, @attendance] do |f| %>
-            <%= f.collection_radio_buttons :absence, [[true, 'Absent'], [false, 'Present']], :first, :last %>
-            <%= f.input :comment %>
+          <h1>Will you be there?</h1>
+          <%= simple_form_for [@event, @attendance], html: {novalidate: true, class: "no-validation"} do |f| %>
+            <div class="toggle-radio mt-3">
+              <input type="radio" name="rdo" id="yes" value="yes" <%= "checked" unless  @attendance.absence%> >
+              <input type="radio" name="rdo" id="no" value="no" <%= "checked" if  @attendance.absence%>>
+              <div class="switch">
+                <label for="yes">Yes</label>
+                <label for="no">No</label>
+                <span></span>
+              </div>
+            </div>
+            <%= f.input :comment, required: false, input_html: { class: "bg-info" } %>
             <%= f.button :submit, "Save Attendance", class: "btn btn-primary br" %>
           <% end %>
         </div>
@@ -50,6 +58,8 @@
       <div class='players-list-card p-2 br box-shadow bg-white mb-5 list-group'>
         <% @absent_team_members = @event.team.team_members.select{|team_member| team_member.attendances.find_by(event: @event).absence == true if team_member.attendances.find_by(event: @event) } %>
         <% @present_team_members = @event.team.team_members - @absent_team_members %>
+        <% @present_team_members = @present_team_members.sort_by { |member | member.user.fullname} %>
+        <% @absent_team_members = @absent_team_members.sort_by { |member | member.user.fullname} %>
           <% @present_team_members.each do |team_member| %>
             <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
           <% end %>

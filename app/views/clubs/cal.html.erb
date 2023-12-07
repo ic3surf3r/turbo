@@ -12,13 +12,13 @@
   <br>
   <div class="d-flex justify-content-center align-items-center">
     <%= link_to club_cal_path(start_date: @monday.prev_day(7)), class: "text-black text-decoration-none me-3" do %>
-      <h3><<</h3>
+      <h3 class='orange'><<</h3>
     <% end %>
     <h3>
       <%= @monday.strftime("%B %d, %Y") %> - <%= @monday.next_day(6).strftime("%B %d, %Y") %>
     </h3>
     <%= link_to club_cal_path(start_date: @monday.next_day(7)), class: "text-black text-decoration-none ms-3" do %>
-      <h3>>></h3>
+      <h3 class='orange'>>></h3>
     <% end %>
   </div>
   <br>

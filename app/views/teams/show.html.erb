@@ -29,7 +29,8 @@
         <h2 class='my-3 text-white'>Members</h2>
       <div class ='p-2 br box-shadow bg-white mb-5'>
         <div class='players-list-card br list-group'>
-          <% @team.team_members.each do |team_member| %>
+          <% @members = @team.team_members.sort_by{|member| member.user.first_name} %>
+          <% @members.each do |team_member| %>
             <%= render 'shared/players_list_team', team_member: team_member, team: @team %>
           <% end %>
         </div>
