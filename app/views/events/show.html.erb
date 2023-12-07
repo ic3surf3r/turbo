@@ -45,8 +45,8 @@
           <% end %>
         </div>
       <% end %>
-      <h2>Members</h2>
-      <h4 class='my-2'>Present</h4>
+      <h2 class='text-white'>Members</h2>
+      <h4 class='my-2 text-white'>Present</h4>
       <div class='players-list-card p-2 br box-shadow bg-white mb-5 list-group'>
         <% @absent_team_members = @event.team.team_members.select{|team_member| team_member.attendances.find_by(event: @event).absence == true if team_member.attendances.find_by(event: @event) } %>
         <% @present_team_members = @event.team.team_members - @absent_team_members %>
@@ -55,7 +55,7 @@
           <% end %>
       </div>
       <% if @absent_team_members.length != 0 %>
-        <h4 class='my-2'>Absent</h4>
+        <h4 class='my-2 text-white'>Absent</h4>
         <div class='players-list-card br box-shadow list-group'>
             <% @absent_team_members.each do |team_member| %>
               <% if current_user.coach_or_manager?(@event.team) %>

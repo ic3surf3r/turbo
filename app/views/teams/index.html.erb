@@ -1,7 +1,7 @@
 <div class="container">
-  <h1 class='my-20'>My teams</h1>
+  <h1 class='my-20 text-white'>My teams</h1>
     <% if current_user.teams.length == 0 %>
-      <h4>You have not joined any teams yet</h4>
+      <h4 class='text-white'>You have not joined any teams yet</h4>
     <% else %>
     <div class="row">
       <% @teams.each do | team | %>
