@@ -10,60 +10,62 @@
     <%= link_to "New Event", club_events_path(@club), class: "btn btn-warning text-white"%>
   </div>
   <br>
-  <div class="d-flex justify-content-center align-items-center">
-    <%= link_to club_cal_path(start_date: @monday.prev_day(7)), class: "text-black text-decoration-none me-3" do %>
-      <h3 class='orange'><<</h3>
-    <% end %>
-    <h3>
-      <%= @monday.strftime("%B %d, %Y") %> - <%= @monday.next_day(6).strftime("%B %d, %Y") %>
-    </h3>
-    <%= link_to club_cal_path(start_date: @monday.next_day(7)), class: "text-black text-decoration-none ms-3" do %>
-      <h3 class='orange'>>></h3>
-    <% end %>
-  </div>
-  <br>
-  <div class="cal">
-    <div class="cal-item">
-      <h4>Start Time</h4>
+  <div class="bg-info br p-3">
+    <div class="d-flex justify-content-center align-items-center">
+      <%= link_to club_cal_path(start_date: @monday.prev_day(7)), class: "text-black text-decoration-none me-3" do %>
+        <h3 class='orange'><<</h3>
+      <% end %>
+      <h3>
+        <%= @monday.strftime("%B %d, %Y") %> - <%= @monday.next_day(6).strftime("%B %d, %Y") %>
+      </h3>
+      <%= link_to club_cal_path(start_date: @monday.next_day(7)), class: "text-black text-decoration-none ms-3" do %>
+        <h3 class='orange'>>></h3>
+      <% end %>
     </div>
-    <div class="cal-item">
-      <h4><%= @monday.strftime("%a %d") %></h4>
-    </div>
-    <div class="cal-item">
-      <h4><%= @monday.next_day(1).strftime("%a %d") %></h4>
-    </div>
-    <div class="cal-item">
-      <h4><%= @monday.next_day(2).strftime("%a %d") %></h4>
-    </div>
-    <div class="cal-item">
-      <h4><%= @monday.next_day(3).strftime("%a %d") %></h4>
-    </div>
-    <div class="cal-item">
-      <h4><%= @monday.next_day(4).strftime("%a %d") %></h4>
-    </div>
-    <div class="cal-item">
-      <h4><%= @monday.next_day(5).strftime("%a %d") %></h4>
-    </div>
-    <div class="cal-item">
-      <h4><%= @monday.next_day(6).strftime("%a %d") %></h4>
-    </div>
-    <%= render 'cal_row', start_time: "00:00", end_time: "07:59", time_slot: 0 %>
-    <%= render 'cal_row', start_time: "08:00", end_time: "08:59", time_slot: 1 %>
-    <%= render 'cal_row', start_time: "09:00", end_time: "09:59", time_slot: 2 %>
-    <%= render 'cal_row', start_time: "10:00", end_time: "10:59", time_slot: 3 %>
-    <%= render 'cal_row', start_time: "11:00", end_time: "11:59", time_slot: 4 %>
-    <%= render 'cal_row', start_time: "12:00", end_time: "12:59", time_slot: 5 %>
-    <%= render 'cal_row', start_time: "13:00", end_time: "13:59", time_slot: 6 %>
-    <%= render 'cal_row', start_time: "14:00", end_time: "14:59", time_slot: 7 %>
-    <%= render 'cal_row', start_time: "15:00", end_time: "15:59", time_slot: 8 %>
-    <%= render 'cal_row', start_time: "16:00", end_time: "16:59", time_slot: 9 %>
-    <%= render 'cal_row', start_time: "17:00", end_time: "17:59", time_slot: 10 %>
-    <%= render 'cal_row', start_time: "18:00", end_time: "18:59", time_slot: 11 %>
-    <%= render 'cal_row', start_time: "19:00", end_time: "19:59", time_slot: 12 %>
-    <%= render 'cal_row', start_time: "20:00", end_time: "20:59", time_slot: 13 %>
-    <%= render 'cal_row', start_time: "21:00", end_time: "21:59", time_slot: 14 %>
-    <%= render 'cal_row', start_time: "22:00", end_time: "23:59", time_slot: 15 %>
+    <br>
+    <div class="cal">
+      <div class="cal-item">
+        <h4>Start Time</h4>
+      </div>
+      <div class="cal-item">
+        <h4><%= @monday.strftime("%a %d") %></h4>
+      </div>
+      <div class="cal-item">
+        <h4><%= @monday.next_day(1).strftime("%a %d") %></h4>
+      </div>
+      <div class="cal-item">
+        <h4><%= @monday.next_day(2).strftime("%a %d") %></h4>
+      </div>
+      <div class="cal-item">
+        <h4><%= @monday.next_day(3).strftime("%a %d") %></h4>
+      </div>
+      <div class="cal-item">
+        <h4><%= @monday.next_day(4).strftime("%a %d") %></h4>
+      </div>
+      <div class="cal-item">
+        <h4><%= @monday.next_day(5).strftime("%a %d") %></h4>
+      </div>
+      <div class="cal-item">
+        <h4><%= @monday.next_day(6).strftime("%a %d") %></h4>
+      </div>
+      <%= render 'cal_row', start_time: "00:00", end_time: "07:59", time_slot: 0 %>
+      <%= render 'cal_row', start_time: "08:00", end_time: "08:59", time_slot: 1 %>
+      <%= render 'cal_row', start_time: "09:00", end_time: "09:59", time_slot: 2 %>
+      <%= render 'cal_row', start_time: "10:00", end_time: "10:59", time_slot: 3 %>
+      <%= render 'cal_row', start_time: "11:00", end_time: "11:59", time_slot: 4 %>
+      <%= render 'cal_row', start_time: "12:00", end_time: "12:59", time_slot: 5 %>
+      <%= render 'cal_row', start_time: "13:00", end_time: "13:59", time_slot: 6 %>
+      <%= render 'cal_row', start_time: "14:00", end_time: "14:59", time_slot: 7 %>
+      <%= render 'cal_row', start_time: "15:00", end_time: "15:59", time_slot: 8 %>
+      <%= render 'cal_row', start_time: "16:00", end_time: "16:59", time_slot: 9 %>
+      <%= render 'cal_row', start_time: "17:00", end_time: "17:59", time_slot: 10 %>
+      <%= render 'cal_row', start_time: "18:00", end_time: "18:59", time_slot: 11 %>
+      <%= render 'cal_row', start_time: "19:00", end_time: "19:59", time_slot: 12 %>
+      <%= render 'cal_row', start_time: "20:00", end_time: "20:59", time_slot: 13 %>
+      <%= render 'cal_row', start_time: "21:00", end_time: "21:59", time_slot: 14 %>
+      <%= render 'cal_row', start_time: "22:00", end_time: "23:59", time_slot: 15 %>
 
+    </div>
   </div>
   <br>
 </div>

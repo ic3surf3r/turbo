@@ -21,13 +21,15 @@
 .event-cell {
   text-align: center;
   margin: 7px 10px;
-  background: #fff;
+  background: #1ec11b;
+  color: #fff;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .empty {
-  background: #959595;
+    background: #aaa;
+    color: #fff;
 }
 
 .popcard {
