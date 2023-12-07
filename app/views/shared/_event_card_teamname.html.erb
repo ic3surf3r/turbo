@@ -10,14 +10,13 @@
         <div class='mx-3 '>
         <div class='d-flex align-items-baseline'>
           <h3><strong><%= event.title %>  </strong></h3>
-          <p class='mx-2'><%= event.team.name %></p>
         </div>
           <em> <%= event.address %></em>
           <% if event.location_id %>
             <small> <strong>@<%= (Location.find(event.location_id)).name %></strong></small>
           <% end %>
           <p><%= event.description %></p>
-          <p><%= event.team.club.name %></p>
+          <p><%= event.team.club.name %> - <%= event.team.name %></p>
         </div>
     </div>
       <div class='mx-3'>
