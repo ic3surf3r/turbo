@@ -13,6 +13,7 @@
             <small> <strong>@<%= (Location.find(event.location_id)).name %></strong></small>
           <% end %>
           <p class="mb-0"><%= event.description %></p>
+           <p class="mb-0"><%= event.team.name %></p>
         </div>
     </div>
       <div class='mx-3'>
