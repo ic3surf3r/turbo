@@ -54,6 +54,7 @@ gem 'faker'
 gem 'redis', '~> 5.0', '>= 5.0.8'
 gem "cloudinary"
 gem "geocoder"
+gem 'bullet', group: 'development'
 
 group :development, :test do
   gem "dotenv-rails"

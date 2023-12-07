@@ -54,11 +54,7 @@
         </div>
       <% end %>
       <h4 class='my-3 text-white'>Present players</h4>
-      <div class='players-list-card p-2 br box-shadow bg-white mb-3 list-group'>
-        <% @absent_team_members = @event.team.team_members.select{|team_member| team_member.attendances.find_by(event: @event).absence == true if team_member.attendances.find_by(event: @event) } %>
-        <% @present_team_members = @event.team.team_members - @absent_team_members %>
-        <% @present_team_members = @present_team_members.sort_by { |member | member.user.fullname} %>
-        <% @absent_team_members = @absent_team_members.sort_by { |member | member.user.fullname} %>
+      <div class='players-list-card p-2 br box-shadow bg-white mb-5 list-group'>
           <% @present_team_members.each do |team_member| %>
             <%= render 'shared/players_list', team_member: team_member, team: @event.team %>
           <% end %>

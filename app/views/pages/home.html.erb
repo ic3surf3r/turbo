@@ -12,12 +12,12 @@
         <% end %>
       </div>
       <h2 class='mt-2 text-white'>My clubs</h2>
-      <% if current_user.clubs.length == 0 %>
+      <% if current_user.clubs.includes([:photo_attachment]).length == 0 %>
         <h4 class='text-white'>You have not joined any clubs yet</h4>
         <h5 class='text-white'>Why not create one?</h5>
         <%= link_to 'New Club', new_club_path, class: 'btn btn-warning text-white' %>
       <% else %>
-        <% current_user.clubs.each do |club| %>
+        <% current_user.clubs.includes([:locations]).each do |club| %>
           <%= render 'shared/club_card', club: club %>
         <% end %>
       <% end %>
