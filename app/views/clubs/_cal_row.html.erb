@@ -1,5 +1,5 @@
     <div class="cal-item">
-      <h4><%= start_time %> to <%= end_time %></h4>
+      <h5 class="my-2"><%= start_time %> to <%= end_time %></h5>
     </div>
     <div class="cal-item" data-controller="popover" data-action="<%= @cal[0][time_slot].count == 0 ? "" : "mouseenter->popover#show mouseleave->popover#hide" %>">
       <p class="event-cell <%= "empty" if @cal[0][time_slot].count == 0 %> <%= @cal[0][time_slot].map { |event| event.team_member_id ? 0 : 1 }.sum > 0 ? "red-glow" : '' %>"><%= @cal[0][time_slot].count %></p>
