@@ -2,7 +2,7 @@ class ClubsController < ApplicationController
   before_action :set_club, only: %i[show]
 
   def index
-    @clubs = current_user.clubs
+    @clubs = current_user.clubs.includes([:locations])
   end
 
   def show

@@ -8,6 +8,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @team_member = TeamMember.new
+    @members = @team.team_members.includes([:user]).sort_by{|member| member.user.first_name}
   end
 
   def new
