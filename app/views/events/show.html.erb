@@ -16,7 +16,7 @@
               <%= link_to edit_event_path(@event), class: 'btn btn-primary br' do %>
                 <i class="fa-regular fa-pen-to-square"></i>
               <% end %>
-              <%= link_to event_path(@event.team), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white' do %>
+              <%= link_to event_path(@event), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger br text-white' do %>
                 <i class="fa-solid fa-trash"></i>
               <% end %>
             </div>
