@@ -3,7 +3,7 @@
   <p class='list-group-item bg-white m-0 border-0'><%= user.fullname %></p>
   <div>
     <% if team_member.is_coach %>
-        <i class="fa-solid fa-bullhorn mx-20"></i>
+        <i class="fa-solid fa-user-tie orange mx-2"></i>
       <% end %>
     <% if current_user.coach_or_manager?(team) %>
       <%= link_to team_member_path(team_member), data:{turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'bg-white' do %>

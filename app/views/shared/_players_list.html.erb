@@ -3,7 +3,7 @@
   <p class='list-group-item bg-white m-0 border-0'><%= user.fullname %></p>
   <div>
     <% if team_member.is_coach %>
-      <i class="fa-solid fa-user-tie"></i>
+      <i class="fa-solid fa-user-tie orange mx-2"></i>
     <% end %>
     <% if team_member.attendances.find_by(event: Event.find(params[:id])).absence  %>
       <i class="fa-solid fa-circle-xmark mx-3 text-danger"></i>
