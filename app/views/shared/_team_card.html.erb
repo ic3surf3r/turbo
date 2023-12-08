@@ -17,7 +17,7 @@
         <% end %>
         <h4><%= team.club.name %></h4>
         <p><%= team.description %></p>
-        <p><em><%= team.team_members.count %> members</em></p>
+        <p><em><%= team.team_members.size %> members</em></p>
         <% if current_user.coach_or_manager?(team) %>
           <div class='buttons'>
             <%= link_to edit_team_path(team), class: 'btn btn-primary br' do %>
