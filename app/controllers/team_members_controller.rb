@@ -6,6 +6,7 @@ class TeamMembersController < ApplicationController
     @team_member = TeamMember.new(new_member_params)
     @team_member.team = @team
     if @team_member.save!
+      flash[:notice] = "Players list updated"
       redirect_to team_path(@team)
     else
       render new, status: :unprocessable_entity
@@ -16,6 +17,7 @@ class TeamMembersController < ApplicationController
     @team_member = TeamMember.find(params[:id])
     @team = @team_member.team
     @team_member.destroy
+    flash[:notice] = "Players list updated"
     redirect_to team_path(@team), status: :see_other
   end
 

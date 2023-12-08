@@ -43,8 +43,7 @@
         <div class='d-flex justify-content-between align-items-center'>
           <h2 class='mt-2 text-white'>Upcoming events</h2>
           <% if current_user.coach_or_manager?(@team) %>
-            <%= link_to 'New event', new_team_event_path(@team), class: 'btn btn-warning text-white
-             br' %>
+            <%= link_to 'New event', new_team_event_path(@team), class: 'btn btn-warning text-white br' %>
           <% end %>
         </div>
         <% @team.events.where("end_time > ?", Time.now).each do |event| %>
