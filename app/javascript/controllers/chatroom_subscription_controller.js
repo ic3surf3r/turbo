@@ -33,7 +33,7 @@ export default class extends Controller {
 
   #buildMessageElement(currentUserIsSender, message) {
     return `
-      <div class="message-row d-flex ${this.#justifyClass(currentUserIsSender)}">
+      <div class="message-row d-flex font-increase ${this.#justifyClass(currentUserIsSender)}">
         <div class="${this.#userStyleClass(currentUserIsSender)}">
           ${message}
         </div>
