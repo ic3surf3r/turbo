@@ -1,4 +1,4 @@
-<div id="message-<%= message.id %>" class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+<div id="message-<%= message.id %>" class="message-row d-flex font-increase <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
   <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
     <small>
       <strong><%= message.user.fullname %></strong>
