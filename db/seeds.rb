@@ -56,7 +56,7 @@ margaux = User.create!(email: "margaux@email.com", first_name: "Margaux", last_n
 
 #Club White Star
 puts "Creating White Star club"
-white_star = Club.create!(name: "Royal White Star Hockey Club", description: "Hockey club located in Evere", address: "Av. des Anciens Combattants 350, 1140 Evere")
+white_star = Club.create!(name: "Royal White Star Hockey Club", description: "Hockey club located in Evere", address: "Rue De L'arbre Unique - Eenboomstraat, 1140 Evere, Brussels-Capital, Belgium")
 white_star.photo.attach(
   io: File.open('app/assets/images/white_star.gif'),
   filename: 'white_star.gif'
