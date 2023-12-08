@@ -56,6 +56,7 @@ class EventsController < ApplicationController
     @event.update(event_params)
     @team = @event.team
     if @event.save!
+      flash[:notice] = "Event updated"
       redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity

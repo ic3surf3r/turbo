@@ -6,6 +6,7 @@ class AttendancesController < ApplicationController
     @attendance.absence = @absent
     @event = @attendance.event
     if @attendance.update!(attendance_params)
+      flash[:notice] = "Attendance updated"
       redirect_to event_path(@event)
     else
       render new
