@@ -17,7 +17,7 @@
         <h5 class='text-white'>Why not create one?</h5>
         <%= link_to 'New Club', new_club_path, class: 'btn btn-warning text-white' %>
       <% else %>
-        <% current_user.clubs.includes([:locations]).each do |club| %>
+        <% current_user.clubs.each do |club| %>
           <%= render 'shared/club_card', club: club %>
         <% end %>
       <% end %>

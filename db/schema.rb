@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_05_152037) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_08_124454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_152037) do
     t.string "invite_token"
     t.float "latitude"
     t.float "longitude"
+    t.integer "locations_count"
     t.index ["invite_token"], name: "index_clubs_on_invite_token", unique: true
   end
 
@@ -138,6 +139,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_152037) do
     t.string "name"
     t.string "sport"
     t.text "description"
+    t.integer "team_members_count"
     t.index ["club_id"], name: "index_teams_on_club_id"
   end
 
